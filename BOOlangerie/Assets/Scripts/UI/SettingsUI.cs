@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using BOO.Core;
 
 namespace BOO.UI
 {

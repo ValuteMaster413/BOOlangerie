@@ -15,4 +15,7 @@ MonoBehaviour:
   id: pumpkin
   displayName: Pumpkin Man
   sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  rounds: 2
+  orders:
+  - baseItem: {fileID: 11400000, guid: f3278417a15b5b341be5c4f15573f1be, type: 2}
+    toppings:
+    - {fileID: 11400000, guid: 7540d1a8ef2dc3d4780926018a54db82, type: 2}

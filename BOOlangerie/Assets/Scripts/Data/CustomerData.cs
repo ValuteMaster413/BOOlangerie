@@ -9,6 +9,7 @@ namespace BOO.Data
         public string id;
         public string displayName;
         public Sprite sprite;
+        public Sprite monsterSprite;
         public Order[] orders;
     }
 }

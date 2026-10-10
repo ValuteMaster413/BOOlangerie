@@ -99,7 +99,14 @@ namespace BOO.UI
         {
             if (!string.IsNullOrEmpty(targetSceneName))
             {
-                SceneManager.LoadScene(targetSceneName);
+                if (SceneTransitionManager.Instance != null)
+                {
+                    SceneTransitionManager.Instance.LoadScene(targetSceneName);
+                }
+                else
+                {
+                    SceneManager.LoadScene(targetSceneName);
+                }
             }
             else
             {

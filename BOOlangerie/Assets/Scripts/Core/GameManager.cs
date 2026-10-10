@@ -20,7 +20,7 @@ namespace BOO.Core
         public GameState State { get; private set; }
         public CustomerData CurrentCustomer => customers[customerIndex];
         public string OrderKnot => $"{CurrentCustomer.id}_r{roundIndex + 1}";
-        public string ResultKnot => $"{OrderKnot}_result";
+        public string ResultKnot(OrderResult result) => $"{OrderKnot}_{result.ToString().ToLowerInvariant()}";
 
         public event Action<GameState> StateChanged;
         public event Action<OrderResult> OrderServed;
@@ -35,13 +35,11 @@ namespace BOO.Core
             SetState(GameState.Intro);
         }
 
-        // TODO: remove the space debug key
+        // TODO: remove once the prep station calls Serve
         private void Update()
         {
-            if (Keyboard.current == null || !Keyboard.current.spaceKey.wasPressedThisFrame) return;
-
-            if (State == GameState.Prep) Serve(null);
-            else DialogueFinished();
+            if (State != GameState.Prep || Keyboard.current == null) return;
+            if (Keyboard.current.sKey.wasPressedThisFrame) Serve(null);
         }
 
         public void SetWantedOrder(Order wanted)

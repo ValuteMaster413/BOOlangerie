@@ -15,12 +15,20 @@ namespace BOO.Core
 
         private int customerIndex;
         private int roundIndex;
-        private Order wantedOrder;
 
         public GameState State { get; private set; }
         public CustomerData CurrentCustomer => customers[customerIndex];
         public string OrderKnot => $"{CurrentCustomer.id}_r{roundIndex + 1}";
         public string ResultKnot(OrderResult result) => $"{OrderKnot}_{result.ToString().ToLowerInvariant()}";
+
+        public Order CurrentOrder
+        {
+            get
+            {
+                Order[] orders = CurrentCustomer.orders;
+                return roundIndex < orders.Length ? orders[roundIndex] : null;
+            }
+        }
 
         public event Action<GameState> StateChanged;
         public event Action<OrderResult> OrderServed;
@@ -39,12 +47,9 @@ namespace BOO.Core
         private void Update()
         {
             if (State != GameState.Prep || Keyboard.current == null) return;
-            if (Keyboard.current.sKey.wasPressedThisFrame) Serve(null);
-        }
 
-        public void SetWantedOrder(Order wanted)
-        {
-            wantedOrder = wanted;
+            if (Keyboard.current.gKey.wasPressedThisFrame) Serve(CurrentOrder);
+            else if (Keyboard.current.bKey.wasPressedThisFrame) Serve(null);
         }
 
         public void DialogueFinished()
@@ -67,7 +72,7 @@ namespace BOO.Core
         {
             if (State != GameState.Prep) return;
 
-            OrderResult result = OrderEvaluator.Evaluate(wantedOrder, made);
+            OrderResult result = OrderEvaluator.Evaluate(CurrentOrder, made);
             Debug.Log($"Served {CurrentCustomer.id}: {result}");
             OrderServed?.Invoke(result);
             SetState(GameState.Reaction);
@@ -76,7 +81,7 @@ namespace BOO.Core
         private void NextRound()
         {
             roundIndex++;
-            if (roundIndex >= CurrentCustomer.rounds)
+            if (roundIndex >= CurrentCustomer.orders.Length)
             {
                 roundIndex = 0;
                 customerIndex++;

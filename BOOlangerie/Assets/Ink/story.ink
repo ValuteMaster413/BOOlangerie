@@ -76,8 +76,8 @@ And at the end of the day, she <i>is</i> a customer, just like everyone else!
 Well, not <i>exactly</i> like everyone else, but a customer all the same!
 Swallowing down any doubts, I slip into a bright shining smile like it's second nature.
 Welcome in Miss, please make yourself comfortable! Now, what can I get you? #speaker: Me
-Make me something sautéed and hearty, topped with a little something sweet. #speaker: Posh Moth Lady
-Oh how I miss France... #speaker: Posh Moth Lady
+Make me something sautéed and hearty, topped with a little something sweet. #speaker: Posh Moth Lady #order
+Oh how I miss France... #speaker: Posh Moth Lady #order
 -> DONE
 
 === moth_r1_bad ===
@@ -161,11 +161,11 @@ Now let's get you something to eat. #speaker: Me
 Ok, so first off, lots of cheese! #speaker: Pumpkin Head . . . Man?
 No cheese! You know how you get. #speaker: Pumpkin Head . . . Man?
 Fine. No cheese. #speaker: Pumpkin Head . . . Man?
-Something sweet! #speaker: Pumpkin Head . . . Man?
-No, something savory! #speaker: Pumpkin Head . . . Man?
+Something sweet! #speaker: Pumpkin Head . . . Man? #order
+No, something savory! #speaker: Pumpkin Head . . . Man? #order
 Sweet! #speaker: Pumpkin Head . . . Man?
 Savory! #speaker: Pumpkin Head . . . Man?
-Um... I'd like a donut please. #speaker: Pumpkin Head . . . Man?
+Um... I'd like a donut please. #speaker: Pumpkin Head . . . Man? #order
 Urghh my brain is breaking!
 I-I think I caught all that.
 -> DONE
@@ -299,8 +299,8 @@ It wouldn't hurt to feed just one more little critter, I mean... just look at th
 Ok. On the house. #speaker: Cute Racoon-Dog!
 I beam as I grab my notepad and pen. Somehow, going home doesn't seem so important now.
 So, what can I get you? #speaker: Me
-I crave something I can easily hold in my hand, filled with the sweetness of nature. #speaker: Cute Racoon-Dog!
-Foraging along the trees in autumn, I like to pick these off the ground. #speaker: Cute Racoon-Dog!
+I crave something I can easily hold in my hand, filled with the sweetness of nature. #speaker: Cute Racoon-Dog! #order
+Foraging along the trees in autumn, I like to pick these off the ground. #speaker: Cute Racoon-Dog! #order
 So hungry...Please hurry. #speaker: Cute Racoon-Dog!
 Ah, yes right away! #speaker: Me
 Gosh, that was a bit cryptic, but I'll do my very best!

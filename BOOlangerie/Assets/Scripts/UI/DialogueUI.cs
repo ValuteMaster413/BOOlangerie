@@ -16,6 +16,8 @@ namespace BOO.UI
         [SerializeField] private TMP_Text nameText;
         [SerializeField] private TMP_Text bodyText;
         [SerializeField] private Button advanceButton;
+        [SerializeField] private Button skipButton;
+        [SerializeField] private Button autoButton;
         [SerializeField] private Transform choiceContainer;
         [SerializeField] private Button choiceButtonPrefab;
 
@@ -23,11 +25,23 @@ namespace BOO.UI
         [SerializeField] private float slowest = 20f;
         [SerializeField] private float fastest = 90f;
 
+        [Header("Auto")]
+        [SerializeField] private float autoDelay = 1.2f;
+        [SerializeField] private float autoDelayPerCharacter = 0.03f;
+        [SerializeField] private Color autoOnColor = new Color(1f, 0.85f, 0.4f);
+
+        private static bool autoOn;
+
         private Coroutine typing;
+        private Coroutine autoWait;
 
         private void Awake()
         {
             advanceButton.onClick.AddListener(OnAdvanceClicked);
+            if (skipButton != null) skipButton.onClick.AddListener(OnSkipClicked);
+            if (autoButton != null) autoButton.onClick.AddListener(OnAutoClicked);
+
+            RefreshAutoButton();
             panel.SetActive(false);
         }
 
@@ -49,6 +63,7 @@ namespace BOO.UI
         {
             panel.SetActive(true);
             ClearChoices();
+            StopAutoWait();
 
             nameplate.SetActive(speaker.Length > 0);
             nameText.text = speaker;
@@ -81,22 +96,78 @@ namespace BOO.UI
         {
             typing = null;
             bodyText.maxVisibleCharacters = 99999;
+
             if (runner.HasChoices) ShowChoices();
+            else StartAutoWait();
+        }
+
+        private bool CompleteLine()
+        {
+            if (typing == null) return false;
+
+            StopCoroutine(typing);
+            FinishLine();
+            return true;
         }
 
         private void OnAdvanceClicked()
         {
             if (PauseMenuUI.IsPaused) return;
 
-            if (typing != null)
-            {
-                StopCoroutine(typing);
-                FinishLine();
-                return;
-            }
-
+            if (CompleteLine()) return;
             if (runner.HasChoices) return;
+
+            StopAutoWait();
             runner.Advance();
+        }
+
+        private void OnSkipClicked()
+        {
+            if (PauseMenuUI.IsPaused) return;
+
+            StopAutoWait();
+            CompleteLine();
+            if (runner.HasChoices) return;
+
+            runner.Skip();
+            CompleteLine();
+        }
+
+        private void OnAutoClicked()
+        {
+            autoOn = !autoOn;
+            RefreshAutoButton();
+
+            if (autoOn && typing == null) StartAutoWait();
+            else if (!autoOn) StopAutoWait();
+        }
+
+        private void RefreshAutoButton()
+        {
+            if (autoButton != null) autoButton.image.color = autoOn ? autoOnColor : Color.white;
+        }
+
+        private void StartAutoWait()
+        {
+            StopAutoWait();
+            if (!autoOn || !panel.activeSelf || !runner.IsPlaying || runner.HasChoices) return;
+
+            autoWait = StartCoroutine(AutoAdvance());
+        }
+
+        private IEnumerator AutoAdvance()
+        {
+            float wait = autoDelay + autoDelayPerCharacter * bodyText.textInfo.characterCount;
+            yield return new WaitForSeconds(wait);
+
+            autoWait = null;
+            runner.Advance();
+        }
+
+        private void StopAutoWait()
+        {
+            if (autoWait != null) StopCoroutine(autoWait);
+            autoWait = null;
         }
 
         private void ShowChoices()
@@ -126,6 +197,7 @@ namespace BOO.UI
 
         private void Hide()
         {
+            StopAutoWait();
             ClearChoices();
             panel.SetActive(false);
         }

@@ -114,6 +114,41 @@ namespace BOO.Core
             else Finish();
         }
 
+        public void Skip()
+        {
+            if (!IsPlaying || HasChoices) return;
+
+            string lastSpeaker = "";
+            string lastText = null;
+            bool stoppedOnOrder = false;
+
+            while (story.canContinue)
+            {
+                string text = story.Continue().Trim();
+                speaker = ""; // narrator
+                bool isOrder = ReadTags();
+                if (text.Length == 0) continue;
+
+                lastSpeaker = speaker;
+                lastText = text;
+
+                if (isOrder)
+                {
+                    stoppedOnOrder = true;
+                    break;
+                }
+            }
+
+            if (!stoppedOnOrder && !HasChoices)
+            {
+                Finish();
+                return;
+            }
+
+            if (lastText != null) LineShown?.Invoke(lastSpeaker, lastText);
+            else ChoicesShown?.Invoke();
+        }
+
         public List<string> GetChoices()
         {
             var texts = new List<string>();
@@ -131,10 +166,11 @@ namespace BOO.Core
             Advance();
         }
 
-        private void ReadTags()
+        private bool ReadTags()
         {
+            bool isOrder = false;
             var tags = story.currentTags;
-            if (tags == null) return;
+            if (tags == null) return false;
 
             foreach (string tag in tags)
             {
@@ -148,9 +184,13 @@ namespace BOO.Core
                     continue;
                 }
 
+                if (key == "order") isOrder = true;
+
                 Debug.Log($"[Dialogue] tag {key} = {value}");
                 TagFired?.Invoke(key, value);
             }
+
+            return isOrder;
         }
 
         private void Finish()

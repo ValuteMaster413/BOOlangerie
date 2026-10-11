@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace BOO.Core
@@ -17,6 +19,9 @@ namespace BOO.Core
         [Header("UI Sounds")]
         [SerializeField] private AudioClip[] clickSfx;
         [SerializeField] private AudioClip[] hoverSfx;
+
+        [Header("Sounds Played By Name")]
+        [SerializeField] private AudioClip[] sfxLibrary;
 
         private const string MUSIC_KEY = "MusicVolume";
         private const string SFX_KEY = "SFXVolume";
@@ -91,6 +96,41 @@ namespace BOO.Core
                 sfxSource.PlayOneShot(clip);
         }
 
+        public void PlaySFX(string clipName)
+        {
+            if (sfxLibrary == null) return;
+
+            foreach (AudioClip clip in sfxLibrary)
+            {
+                if (clip != null && string.Equals(clip.name, clipName, StringComparison.OrdinalIgnoreCase))
+                {
+                    PlaySFX(clip);
+                    return;
+                }
+            }
+
+            Debug.LogWarning($"[Audio] No sound named '{clipName}' in the Sfx Library.");
+        }
+
+        public void PlayRandomSFX(string namePrefix)
+        {
+            if (sfxLibrary == null) return;
+
+            List<AudioClip> matches = new List<AudioClip>();
+            foreach (AudioClip clip in sfxLibrary)
+            {
+                if (clip != null && clip.name.StartsWith(namePrefix, StringComparison.OrdinalIgnoreCase)) matches.Add(clip);
+            }
+
+            if (matches.Count == 0)
+            {
+                Debug.LogWarning($"[Audio] No sounds starting with '{namePrefix}' in the Sfx Library.");
+                return;
+            }
+
+            PlaySFX(matches[UnityEngine.Random.Range(0, matches.Count)]);
+        }
+
         public void PlayClick()
         {
             PlayRandom(clickSfx);
@@ -105,7 +145,7 @@ namespace BOO.Core
         {
             if (clips == null || clips.Length == 0) return;
 
-            PlaySFX(clips[Random.Range(0, clips.Length)]);
+            PlaySFX(clips[UnityEngine.Random.Range(0, clips.Length)]);
         }
 
         private IEnumerator SwapMusic(AudioClip next)

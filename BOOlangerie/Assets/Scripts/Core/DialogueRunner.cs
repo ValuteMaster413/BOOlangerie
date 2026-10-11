@@ -188,6 +188,12 @@ namespace BOO.Core
                     continue;
                 }
 
+                if (key == "sfx")
+                {
+                    if (!IsSkipping && AudioManager.Instance != null) AudioManager.Instance.PlaySFX(value);
+                    continue;
+                }
+
                 if (key == "order") isOrder = true;
 
                 Debug.Log($"[Dialogue] tag {key} = {value}");

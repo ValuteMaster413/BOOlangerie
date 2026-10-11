@@ -636,13 +636,14 @@ MonoBehaviour:
   - {fileID: 1650898312}
   - {fileID: 2057771310}
   lightsBroken:
-  - {fileID: 0}
-  fadeTime: 0.4
+  - {fileID: 9013716530562033948}
+  - {fileID: 9013716530562033947}
   shiverAmount: 6
   shiverSpeed: 45
   hopHeight: 40
   darkAlpha: 0.6
   flickers: 4
+  flickerStep: 0.07
 --- !u!4 &1346061368
 Transform:
   m_ObjectHideFlags: 0
@@ -1954,6 +1955,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+--- !u!1 &9013716530562033947 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4118907399404233776, guid: a198c203e0290dc4fa5009d9173e3a69, type: 3}
+  m_PrefabInstance: {fileID: 9013716530562033943}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &9013716530562033948 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1387520583405807747, guid: a198c203e0290dc4fa5009d9173e3a69, type: 3}
+  m_PrefabInstance: {fileID: 9013716530562033943}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

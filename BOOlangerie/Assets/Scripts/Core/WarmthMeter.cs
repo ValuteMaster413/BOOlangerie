@@ -35,6 +35,11 @@ namespace BOO.Core
             float change = result == OrderResult.Good ? gainOnGood : -lossOnBad;
             Value = Mathf.Clamp01(Value + change);
 
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlaySFX(result == OrderResult.Good ? "meter_up" : "meter_down");
+            }
+
             Debug.Log($"Warmth: {Value:0.00}");
             Changed?.Invoke(Value);
         }

@@ -63,20 +63,14 @@ public class BakeryViewController : MonoBehaviour
     {
         isSwitching = true;
         
-        if (SceneTransitionManager.Instance != null)
-        {
-            yield return SceneTransitionManager.Instance.StartCoroutine("FadeOut");
-            
-            if (currentStation != null) currentStation.SetActive(false);
-            if (targetStation != null) targetStation.SetActive(true);
-            
-            yield return SceneTransitionManager.Instance.StartCoroutine("FadeIn");
-        }
-        else
-        {
-            if (currentStation != null) currentStation.SetActive(false);
-            if (targetStation != null) targetStation.SetActive(true);
-        }
+        SceneTransitionManager transitions = SceneTransitionManager.Instance;
+
+        if (transitions != null) yield return transitions.StartCoroutine(transitions.FadeOut());
+
+        if (currentStation != null) currentStation.SetActive(false);
+        if (targetStation != null) targetStation.SetActive(true);
+
+        if (transitions != null) yield return transitions.StartCoroutine(transitions.FadeIn());
 
         isSwitching = false;
     }

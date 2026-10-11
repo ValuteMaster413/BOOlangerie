@@ -18,16 +18,24 @@ public class IngredientsMenuUI : MonoBehaviour
     [Header("Ingredient Slots")]
     [SerializeField] private List<IngredientSlotUI> ingredientSlots;
 
+    [Header("Action Buttons")]
+    [SerializeField] private Button resetButton;
+    [SerializeField] private Button serveButton;
+    
     [Header("Description Panel")]
     [SerializeField] private TextMeshProUGUI descriptionText;
 
     private IngredientKind currentCategory = IngredientKind.Base;
+    private CurrentRecipe currentRecipe = new CurrentRecipe();
 
     private void Awake()
     {
         if (baseTabButton != null) baseTabButton.onClick.AddListener(() => SwitchCategory(IngredientKind.Base));
         if (fillingTabButton != null) fillingTabButton.onClick.AddListener(() => SwitchCategory(IngredientKind.Filling));
         if (toppingTabButton != null) toppingTabButton.onClick.AddListener(() => SwitchCategory(IngredientKind.Topping));
+        
+        if (resetButton != null) resetButton.onClick.AddListener(ResetRecipe);
+        if (serveButton != null) serveButton.onClick.AddListener(ServeDish);
     }
 
     private void Start()
@@ -40,6 +48,9 @@ public class IngredientsMenuUI : MonoBehaviour
         if (baseTabButton != null) baseTabButton.onClick.RemoveAllListeners();
         if (fillingTabButton != null) fillingTabButton.onClick.RemoveAllListeners();
         if (toppingTabButton != null) toppingTabButton.onClick.RemoveAllListeners();
+        
+        if (resetButton != null) resetButton.onClick.RemoveListener(ResetRecipe);
+        if (serveButton != null) serveButton.onClick.RemoveListener(ServeDish);
     }
 
     public void SwitchCategory(IngredientKind category)
@@ -75,7 +86,21 @@ public class IngredientsMenuUI : MonoBehaviour
     {
         ShowDescription(ingredient);
         
-        Debug.Log($"Selected ingredient: {ingredient.displayName}");
+        switch (ingredient.kind)
+        {
+            case IngredientKind.Base:
+                currentRecipe.selectedBase = ingredient;
+                Debug.Log($"Base selected: {ingredient.displayName}");
+                break;
+            case IngredientKind.Filling:
+                currentRecipe.selectedFilling = ingredient;
+                Debug.Log($"Filling selected: {ingredient.displayName}");
+                break;
+            case IngredientKind.Topping:
+                currentRecipe.selectedTopping = ingredient;
+                Debug.Log($"Topping selected: {ingredient.displayName}");
+                break;
+        }
     }
 
     private void ShowDescription(IngredientData ingredient)
@@ -84,5 +109,28 @@ public class IngredientsMenuUI : MonoBehaviour
         {
             descriptionText.text = ingredient.description;
         }
+    }
+    
+    private void ResetRecipe()
+    {
+        currentRecipe.Reset();
+        Debug.Log("Recipe reset!");
+    }
+
+    private void ServeDish()
+    {
+        if (!currentRecipe.IsValid())
+        {
+            Debug.LogWarning("Cannot serve! You need at least a Base.");
+            return;
+        }
+
+        Debug.Log($"Serving dish -> Base: {currentRecipe.selectedBase?.displayName}, " +
+                  $"Filling: {currentRecipe.selectedFilling?.displayName ?? "None"}, " +
+                  $"Topping: {currentRecipe.selectedTopping?.displayName ?? "None"}");
+        
+        
+        currentRecipe.Reset();
+        FindObjectOfType<BakeryViewController>()?.ShowCounterStation();
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -19,33 +20,41 @@ namespace BOO.UI
 
         private const string TEXT_SPEED_KEY = "TextSpeed";
 
+        public event Action BackClicked;
+
         private void OnEnable()
         {
             InitializeSliders();
         }
 
-        private void Start()
+        public void OnClickBackButton()
         {
-            if (musicSlider != null)
-                musicSlider.onValueChanged.AddListener(OnMusicSliderChanged);
-
-            if (sfxSlider != null)
-                sfxSlider.onValueChanged.AddListener(OnSFXSliderChanged);
-
-            if (textSpeedSlider != null)
-                textSpeedSlider.onValueChanged.AddListener(OnTextSpeedSliderChanged);
+            BackClicked?.Invoke();
         }
 
-        private void OnDestroy()
+        public void OnMusicSliderChanged(float value)
         {
-            if (musicSlider != null)
-                musicSlider.onValueChanged.RemoveListener(OnMusicSliderChanged);
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.SetMusicVolume(value);
+            }
+            UpdateText(musicValueText, value);
+        }
 
-            if (sfxSlider != null)
-                sfxSlider.onValueChanged.RemoveListener(OnSFXSliderChanged);
+        public void OnSFXSliderChanged(float value)
+        {
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.SetSFXVolume(value);
+            }
+            UpdateText(sfxValueText, value);
+        }
 
-            if (textSpeedSlider != null)
-                textSpeedSlider.onValueChanged.RemoveListener(OnTextSpeedSliderChanged);
+        public void OnTextSpeedSliderChanged(float value)
+        {
+            PlayerPrefs.SetFloat(TEXT_SPEED_KEY, value);
+            PlayerPrefs.Save();
+            UpdateText(textSpeedValueText, value);
         }
 
         private void InitializeSliders()
@@ -56,46 +65,21 @@ namespace BOO.UI
 
             if (musicSlider != null)
             {
-                musicSlider.value = currentMusic;
+                musicSlider.SetValueWithoutNotify(currentMusic);
                 UpdateText(musicValueText, currentMusic);
             }
 
             if (sfxSlider != null)
             {
-                sfxSlider.value = currentSFX;
+                sfxSlider.SetValueWithoutNotify(currentSFX);
                 UpdateText(sfxValueText, currentSFX);
             }
 
             if (textSpeedSlider != null)
             {
-                textSpeedSlider.value = currentTextSpeed;
+                textSpeedSlider.SetValueWithoutNotify(currentTextSpeed);
                 UpdateText(textSpeedValueText, currentTextSpeed);
             }
-        }
-
-        private void OnMusicSliderChanged(float value)
-        {
-            if (AudioManager.Instance != null)
-            {
-                AudioManager.Instance.SetMusicVolume(value);
-            }
-            UpdateText(musicValueText, value);
-        }
-
-        private void OnSFXSliderChanged(float value)
-        {
-            if (AudioManager.Instance != null)
-            {
-                AudioManager.Instance.SetSFXVolume(value);
-            }
-            UpdateText(sfxValueText, value);
-        }
-
-        private void OnTextSpeedSliderChanged(float value)
-        {
-            PlayerPrefs.SetFloat(TEXT_SPEED_KEY, value);
-            PlayerPrefs.Save();
-            UpdateText(textSpeedValueText, value);
         }
 
         private void UpdateText(TextMeshProUGUI textComp, float value)

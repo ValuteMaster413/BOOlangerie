@@ -1,3 +1,4 @@
+using BOO.Core;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,6 +28,14 @@ public class BakeryViewController : MonoBehaviour
     {
         if (counterStationUI != null) counterStationUI.SetActive(true);
         if (prepStationUI != null) prepStationUI.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (goToPrepButton == null) return;
+
+        bool canPrep = GameManager.Instance != null && GameManager.Instance.State == GameState.Prep;
+        if (goToPrepButton.gameObject.activeSelf != canPrep) goToPrepButton.gameObject.SetActive(canPrep);
     }
 
     private void OnDestroy()

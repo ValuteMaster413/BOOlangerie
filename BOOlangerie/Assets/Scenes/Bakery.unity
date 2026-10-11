@@ -409,17 +409,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &919230929 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1670772140357204759, guid: 205c97060b49b9345b43f7a9ace5bf8c, type: 3}
-  m_PrefabInstance: {fileID: 1852801000}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!114 &1079923217 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7613105431519400638, guid: a198c203e0290dc4fa5009d9173e3a69, type: 3}
@@ -680,8 +669,10 @@ MonoBehaviour:
   body: {fileID: 9013716530562033946}
   monster: {fileID: 9013716530562033944}
   darkness: {fileID: 9013716530562033945}
-  lightsOn: {fileID: 0}
-  lightsBroken: {fileID: 0}
+  lightsOn:
+  - {fileID: 0}
+  lightsBroken:
+  - {fileID: 0}
   fadeTime: 0.4
   shiverAmount: 6
   shiverSpeed: 45
@@ -764,17 +755,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19efe3445fd288a48ade3fe65ba7e239, type: 3}
---- !u!114 &1601635988 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9089444845235396855, guid: 205c97060b49b9345b43f7a9ace5bf8c, type: 3}
-  m_PrefabInstance: {fileID: 1852801000}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &1761930894
 GameObject:
   m_ObjectHideFlags: 0
@@ -1029,11 +1009,11 @@ PrefabInstance:
     - target: {fileID: 1634306918279943687, guid: 205c97060b49b9345b43f7a9ace5bf8c, type: 3}
       propertyPath: creditsBackButton
       value: 
-      objectReference: {fileID: 919230929}
+      objectReference: {fileID: 0}
     - target: {fileID: 1634306918279943687, guid: 205c97060b49b9345b43f7a9ace5bf8c, type: 3}
       propertyPath: settingsBackButton
       value: 
-      objectReference: {fileID: 1601635988}
+      objectReference: {fileID: 0}
     - target: {fileID: 1701506294124949619, guid: 205c97060b49b9345b43f7a9ace5bf8c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1425,6 +1405,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1271923055}
     m_Modifications:
+    - target: {fileID: 1859699864810013362, guid: fe813af2b1fe3424abc0fe7f532c299f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1859699864810013362, guid: fe813af2b1fe3424abc0fe7f532c299f, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1859699864810013362, guid: fe813af2b1fe3424abc0fe7f532c299f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1859699864810013362, guid: fe813af2b1fe3424abc0fe7f532c299f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6300419761515760805, guid: fe813af2b1fe3424abc0fe7f532c299f, type: 3}
       propertyPath: m_Name
       value: DialogueUI
@@ -1538,6 +1534,22 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8127508839862760108, guid: fe813af2b1fe3424abc0fe7f532c299f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8983675280656528107, guid: fe813af2b1fe3424abc0fe7f532c299f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8983675280656528107, guid: fe813af2b1fe3424abc0fe7f532c299f, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8983675280656528107, guid: fe813af2b1fe3424abc0fe7f532c299f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8983675280656528107, guid: fe813af2b1fe3424abc0fe7f532c299f, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
@@ -1955,10 +1967,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: CounterStationUI
       objectReference: {fileID: 0}
-    - target: {fileID: 4733833453432117719, guid: a198c203e0290dc4fa5009d9173e3a69, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2006,7 +2014,7 @@ SceneRoots:
   - {fileID: 1339251580}
   - {fileID: 1123980150}
   - {fileID: 1346061368}
+  - {fileID: 1989552995}
   - {fileID: 1271923055}
   - {fileID: 1761930897}
-  - {fileID: 1989552995}
   - {fileID: 1439829107}

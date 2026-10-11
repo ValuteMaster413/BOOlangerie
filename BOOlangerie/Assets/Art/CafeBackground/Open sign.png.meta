@@ -1,0 +1,1092 @@
+fileFormatVersion: 2
+guid: 9b86f8c43c9427c4f960dd69f429ea7f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 136385069735750399
+    second: Open sign_0
+  - first:
+      213: 7173799129974260446
+    second: Open sign_1
+  - first:
+      213: -6598870815570836123
+    second: Open sign_2
+  - first:
+      213: -6500312685156068006
+    second: Open sign_3
+  - first:
+      213: -1401872180050358712
+    second: Open sign_4
+  - first:
+      213: 3233881763691847244
+    second: Open sign_5
+  - first:
+      213: 3378762995055579941
+    second: Open sign_6
+  - first:
+      213: 8792829172567207328
+    second: Open sign_7
+  - first:
+      213: 2202455156460139987
+    second: Open sign_8
+  - first:
+      213: -8174553481773877590
+    second: Open sign_9
+  - first:
+      213: -2419665450533530096
+    second: Open sign_10
+  - first:
+      213: 7339709501855362235
+    second: Open sign_11
+  - first:
+      213: 2157834348923268198
+    second: Open sign_12
+  - first:
+      213: -5770736907113334162
+    second: Open sign_13
+  - first:
+      213: 7948059688938091251
+    second: Open sign_14
+  - first:
+      213: 5913232501392469523
+    second: Open sign_15
+  - first:
+      213: 1945711576927783527
+    second: Open sign_16
+  - first:
+      213: -6390376419885017018
+    second: Open sign_17
+  - first:
+      213: -5616387736029898698
+    second: Open sign_18
+  - first:
+      213: 2256915819526797187
+    second: Open sign_19
+  - first:
+      213: 10409867410763418
+    second: Open sign_20
+  - first:
+      213: 6964650382195268531
+    second: Open sign_21
+  - first:
+      213: -2925642964845711380
+    second: Open sign_22
+  - first:
+      213: 6985025772545511091
+    second: Open sign_23
+  - first:
+      213: -2893741408746668191
+    second: Open sign_24
+  - first:
+      213: -2434311691865370884
+    second: Open sign_25
+  - first:
+      213: 75688850128662546
+    second: Open sign_26
+  - first:
+      213: 7018746616055178561
+    second: Open sign_27
+  - first:
+      213: 6984230348144766082
+    second: Open sign_28
+  - first:
+      213: -8079413998590232526
+    second: Open sign_29
+  - first:
+      213: -1833696322667375824
+    second: Open sign_30
+  - first:
+      213: -8929040807857733608
+    second: Open sign_31
+  - first:
+      213: -4251971677722792267
+    second: Open sign_32
+  - first:
+      213: 459164958696514142
+    second: Open sign_33
+  - first:
+      213: -51822789710133709
+    second: Open sign_34
+  - first:
+      213: -3057092089183280171
+    second: Open sign_35
+  - first:
+      213: -4049034577418102762
+    second: Open sign_36
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Open sign_0
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 524
+        width: 893
+        height: 556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffa24429f7984e100800000000000000
+      internalID: 136385069735750399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Open sign_1
+      rect:
+        serializedVersion: 2
+        x: 1139
+        y: 1065
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed24f10ec447e8360800000000000000
+      internalID: 7173799129974260446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Open sign_2
+      rect:
+        serializedVersion: 2
+        x: 1154
+        y: 1069
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 565453f94f91c64a0800000000000000
+      internalID: -6598870815570836123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Open sign_3
+      rect:
+        serializedVersion: 2
+        x: 1164
+        y: 1068
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a559e409d004ac5a0800000000000000
+      internalID: -6500312685156068006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Open sign_4
+      rect:
+        serializedVersion: 2
+        x: 1196
+        y: 1066
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84e889ffdac8b8ce0800000000000000
+      internalID: -1401872180050358712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Open sign_5
+      rect:
+        serializedVersion: 2
+        x: 1207
+        y: 1066
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4e577a845e01ec20800000000000000
+      internalID: 3233881763691847244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Open sign_6
+      rect:
+        serializedVersion: 2
+        x: 1228
+        y: 1068
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 523d584ea07c3ee20800000000000000
+      internalID: 3378762995055579941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Open sign_7
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 798
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ad6f89cb87660a70800000000000000
+      internalID: 8792829172567207328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Open sign_8
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 717
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d5b882bb41b09e10800000000000000
+      internalID: 2202455156460139987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Open sign_9
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 710
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa67f614be62e8e80800000000000000
+      internalID: -8174553481773877590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Open sign_10
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 699
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 016d9a9b71f9b6ed0800000000000000
+      internalID: -2419665450533530096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Open sign_11
+      rect:
+        serializedVersion: 2
+        x: 1001
+        y: 551
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbce5ac87e2ebd560800000000000000
+      internalID: 7339709501855362235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Open sign_12
+      rect:
+        serializedVersion: 2
+        x: 1016
+        y: 550
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66c25bb58ea22fd10800000000000000
+      internalID: 2157834348923268198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Open sign_13
+      rect:
+        serializedVersion: 2
+        x: 1012
+        y: 537
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6af54f8b593aefa0800000000000000
+      internalID: -5770736907113334162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Open sign_14
+      rect:
+        serializedVersion: 2
+        x: 1037
+        y: 537
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f2b1cc2d2e2d4e60800000000000000
+      internalID: 7948059688938091251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Open sign_15
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 539
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31eeacf51a5001250800000000000000
+      internalID: 5913232501392469523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Open sign_16
+      rect:
+        serializedVersion: 2
+        x: 1203
+        y: 538
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76a4522de5e800b10800000000000000
+      internalID: 1945711576927783527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Open sign_17
+      rect:
+        serializedVersion: 2
+        x: 1292
+        y: 500
+        width: 38
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64898b7f082d057a0800000000000000
+      internalID: -6390376419885017018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Open sign_18
+      rect:
+        serializedVersion: 2
+        x: 571
+        y: 338
+        width: 87
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 638d3196c159e02b0800000000000000
+      internalID: -5616387736029898698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Open sign_19
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 466
+        height: 197
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 387badeeafc225f10800000000000000
+      internalID: 2256915819526797187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Open sign_20
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 182
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9e6d2128bbf42000800000000000000
+      internalID: 10409867410763418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Open sign_21
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 184
+        width: 7
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3bb998f4f9867a060800000000000000
+      internalID: 6964650382195268531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Open sign_22
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 172
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cef20c469370667d0800000000000000
+      internalID: -2925642964845711380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Open sign_23
+      rect:
+        serializedVersion: 2
+        x: 434
+        y: 77
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3be068f8eebcfe060800000000000000
+      internalID: 6985025772545511091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Open sign_24
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 82
+        width: 15
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16ff0db358d57d7d0800000000000000
+      internalID: -2893741408746668191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Open sign_25
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 3
+        width: 17
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cfec8cde966973ed0800000000000000
+      internalID: -2434311691865370884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Open sign_26
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 35
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2107061bb96ec0100800000000000000
+      internalID: 75688850128662546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Open sign_27
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 45
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 145a1724cd8976160800000000000000
+      internalID: 7018746616055178561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Open sign_28
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 25
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28ceba26f78fce060800000000000000
+      internalID: 6984230348144766082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Open sign_29
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 39
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 238f5bc56c720ef80800000000000000
+      internalID: -8079413998590232526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Open sign_30
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 0
+        width: 13
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 033987de8e66d86e0800000000000000
+      internalID: -1833696322667375824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Open sign_31
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 6
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8104cae71bca51480800000000000000
+      internalID: -8929040807857733608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Open sign_32
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 2
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5beaf4a7946fdf4c0800000000000000
+      internalID: -4251971677722792267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Open sign_33
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 22
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e52a960e8184f5600800000000000000
+      internalID: 459164958696514142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Open sign_34
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 43
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 336ce048273e74ff0800000000000000
+      internalID: -51822789710133709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Open sign_35
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 0
+        width: 33
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d3e29a21f60395d0800000000000000
+      internalID: -3057092089183280171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Open sign_36
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 21
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61858b92180fec7c0800000000000000
+      internalID: -4049034577418102762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Open sign_0: 136385069735750399
+      Open sign_1: 7173799129974260446
+      Open sign_10: -2419665450533530096
+      Open sign_11: 7339709501855362235
+      Open sign_12: 2157834348923268198
+      Open sign_13: -5770736907113334162
+      Open sign_14: 7948059688938091251
+      Open sign_15: 5913232501392469523
+      Open sign_16: 1945711576927783527
+      Open sign_17: -6390376419885017018
+      Open sign_18: -5616387736029898698
+      Open sign_19: 2256915819526797187
+      Open sign_2: -6598870815570836123
+      Open sign_20: 10409867410763418
+      Open sign_21: 6964650382195268531
+      Open sign_22: -2925642964845711380
+      Open sign_23: 6985025772545511091
+      Open sign_24: -2893741408746668191
+      Open sign_25: -2434311691865370884
+      Open sign_26: 75688850128662546
+      Open sign_27: 7018746616055178561
+      Open sign_28: 6984230348144766082
+      Open sign_29: -8079413998590232526
+      Open sign_3: -6500312685156068006
+      Open sign_30: -1833696322667375824
+      Open sign_31: -8929040807857733608
+      Open sign_32: -4251971677722792267
+      Open sign_33: 459164958696514142
+      Open sign_34: -51822789710133709
+      Open sign_35: -3057092089183280171
+      Open sign_36: -4049034577418102762
+      Open sign_4: -1401872180050358712
+      Open sign_5: 3233881763691847244
+      Open sign_6: 3378762995055579941
+      Open sign_7: 8792829172567207328
+      Open sign_8: 2202455156460139987
+      Open sign_9: -8174553481773877590
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

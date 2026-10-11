@@ -16,8 +16,8 @@ namespace BOO.UI
         [SerializeField] private Image body;
         [SerializeField] private Image monster;
         [SerializeField] private Image darkness;
-        [SerializeField] private GameObject lightsOn;
-        [SerializeField] private GameObject lightsBroken;
+        [SerializeField] private GameObject[] lightsOn;
+        [SerializeField] private GameObject[] lightsBroken;
 
         [Header("Tuning")]
         [SerializeField] private float fadeTime = 0.4f;
@@ -182,15 +182,17 @@ namespace BOO.UI
 
             for (int i = 0; i < flickers; i++)
             {
+                SetActive(lightsOn, false);
                 SetAlpha(darkness, darkAlpha);
                 yield return new WaitForSeconds(0.07f);
+                SetActive(lightsOn, true);
                 SetAlpha(darkness, 0f);
                 yield return new WaitForSeconds(0.07f);
             }
 
+            SetActive(lightsOn, false);
+            SetActive(lightsBroken, true);
             SetAlpha(darkness, darkAlpha);
-            if (lightsOn != null) lightsOn.SetActive(false);
-            if (lightsBroken != null) lightsBroken.SetActive(true);
 
             if (shown != null && shown.monsterSprite != null)
             {
@@ -203,8 +205,18 @@ namespace BOO.UI
         {
             SetAlpha(darkness, 0f);
             monster.enabled = false;
-            if (lightsOn != null) lightsOn.SetActive(true);
-            if (lightsBroken != null) lightsBroken.SetActive(false);
+            SetActive(lightsOn, true);
+            SetActive(lightsBroken, false);
+        }
+
+        private static void SetActive(GameObject[] objects, bool active)
+        {
+            if (objects == null) return;
+
+            foreach (GameObject item in objects)
+            {
+                if (item != null) item.SetActive(active);
+            }
         }
 
         private void StartEffect(IEnumerator routine)

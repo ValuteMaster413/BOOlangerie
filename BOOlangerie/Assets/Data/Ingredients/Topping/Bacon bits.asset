@@ -15,6 +15,6 @@ MonoBehaviour:
   id: bacon_bits
   displayName: Bacon bits
   icon: {fileID: 0}
-  description: Crispy, salty, goodness.
+  description: Smoky, salty and super addicting.
   kind: 2
   flavor: 6

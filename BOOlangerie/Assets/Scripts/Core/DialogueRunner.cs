@@ -1,0 +1,159 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using InkFile = Ink.UnityIntegration.InkFile;
+using Story = Ink.Runtime.Story;
+
+namespace BOO.Core
+{
+    public class DialogueRunner : MonoBehaviour
+    {
+        [SerializeField] private GameManager gameManager;
+        [SerializeField] private InkFile inkFile;
+        [SerializeField] private string introKnot = "intro";
+
+        private Story story;
+        private string speaker = "";
+        private OrderResult lastResult;
+
+        public bool IsPlaying { get; private set; }
+        public bool HasChoices => story != null && story.currentChoices.Count > 0;
+
+        public event Action<string, string> LineShown;
+        public event Action ChoicesShown;
+        public event Action<string, string> TagFired;
+        public event Action Finished;
+
+        private void Awake()
+        {
+            if (inkFile == null || !inkFile.isCompiled)
+            {
+                Debug.LogError("[Dialogue] No compiled ink file assigned.");
+                return;
+            }
+
+            story = new Story(inkFile.storyJson);
+            story.onError += (message, type) => Debug.LogWarning($"[Ink] {type}: {message}");
+        }
+
+        private void OnEnable()
+        {
+            gameManager.StateChanged += OnStateChanged;
+            gameManager.OrderServed += OnOrderServed;
+        }
+
+        private void OnDisable()
+        {
+            gameManager.StateChanged -= OnStateChanged;
+            gameManager.OrderServed -= OnOrderServed;
+        }
+
+        private void OnOrderServed(OrderResult result)
+        {
+            lastResult = result;
+        }
+
+        private void OnStateChanged(GameState state)
+        {
+            switch (state)
+            {
+                case GameState.Intro:
+                    Play(introKnot);
+                    break;
+                case GameState.Ordering:
+                    Play(gameManager.OrderKnot);
+                    break;
+                case GameState.Reaction:
+                    Play(gameManager.ResultKnot(lastResult));
+                    break;
+            }
+        }
+
+        public void Play(string knot)
+        {
+            if (story == null || story.KnotContainerWithName(knot) == null)
+            {
+                Debug.LogWarning($"[Dialogue] Knot '{knot}' not found, skipping.");
+                StartCoroutine(FinishNextFrame());
+                return;
+            }
+
+            IsPlaying = true;
+            story.ChoosePathString(knot);
+            Advance();
+        }
+
+        public void Advance()
+        {
+            if (!IsPlaying) return;
+
+            while (story.canContinue)
+            {
+                string text = story.Continue().Trim();
+                speaker = "";
+                ReadTags();
+                if (text.Length == 0) continue;
+
+                Debug.Log($"[Dialogue] {speaker}: {text}");
+                LineShown?.Invoke(speaker, text);
+                return;
+            }
+
+            if (HasChoices) ChoicesShown?.Invoke();
+            else Finish();
+        }
+
+        public List<string> GetChoices()
+        {
+            var texts = new List<string>();
+            if (story == null) return texts;
+
+            foreach (var choice in story.currentChoices) texts.Add(choice.text);
+            return texts;
+        }
+
+        public void Choose(int index)
+        {
+            if (!HasChoices) return;
+
+            story.ChooseChoiceIndex(index);
+            Advance();
+        }
+
+        private void ReadTags()
+        {
+            var tags = story.currentTags;
+            if (tags == null) return;
+
+            foreach (string tag in tags)
+            {
+                int colon = tag.IndexOf(':');
+                string key = (colon < 0 ? tag : tag.Substring(0, colon)).Trim().ToLowerInvariant();
+                string value = colon < 0 ? "" : tag.Substring(colon + 1).Trim();
+
+                if (key == "speaker")
+                {
+                    speaker = value;
+                    continue;
+                }
+
+                Debug.Log($"[Dialogue] tag {key} = {value}");
+                TagFired?.Invoke(key, value);
+            }
+        }
+
+        private void Finish()
+        {
+            IsPlaying = false;
+            Finished?.Invoke();
+            gameManager.DialogueFinished();
+        }
+
+        private IEnumerator FinishNextFrame()
+        {
+            yield return null;
+            Finish();
+        }
+    }
+}

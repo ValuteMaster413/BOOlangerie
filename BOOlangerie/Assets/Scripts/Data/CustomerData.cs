@@ -1,3 +1,4 @@
+using BOO.Core;
 using UnityEngine;
 
 namespace BOO.Data
@@ -8,6 +9,7 @@ namespace BOO.Data
         public string id;
         public string displayName;
         public Sprite sprite;
-        public int rounds = 3;
+        public Sprite monsterSprite;
+        public Order[] orders;
     }
 }

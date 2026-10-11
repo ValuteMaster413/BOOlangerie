@@ -15,4 +15,7 @@ MonoBehaviour:
   id: moth
   displayName: Moth Lady
   sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  rounds: 2
+  orders:
+  - baseItem: {fileID: 11400000, guid: 32150bc8295dffe46a0a80bef5b581fd, type: 2}
+    toppings:
+    - {fileID: 11400000, guid: 2d8072e0bccf78f42937aa201810d767, type: 2}

@@ -15,10 +15,23 @@ MonoBehaviour:
   id: pumpkin
   displayName: Pumpkin Head . . . Man?
   sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  monsterSprite: {fileID: 0}
+  entranceFrames:
+  - {fileID: 21300000, guid: 17672a11f9c6fdc4497d181738a97ba3, type: 3}
+  - {fileID: 21300000, guid: dfa3d8229848ef145bc0a196926c79df, type: 3}
+  - {fileID: 21300000, guid: daed213f94a23f44a9ad68a73ceb8b8e, type: 3}
+  - {fileID: 21300000, guid: e321d76565e46c64793914bbeacec388, type: 3}
+  - {fileID: 21300000, guid: 6119e139cadbd5042a53b52f290eb6aa, type: 3}
+  - {fileID: 21300000, guid: b8f15f8e6e54cf04a9f82460dacd73a5, type: 3}
+  - {fileID: 21300000, guid: b7a3abe7a08e5fc43a15a8811cf48b69, type: 3}
+  - {fileID: 21300000, guid: 8b2f4570e1156c0478fcf2fa0dc6b5e5, type: 3}
+  - {fileID: 21300000, guid: 1482e5e3e1bf64e4a8c70b5a50814c9a, type: 3}
+  - {fileID: 21300000, guid: 871a4e80ccfc03744a3d7e44b6897055, type: 3}
+  successFrames: []
+  failFrames: []
+  framesPerSecond: 8
+  flickerOnEnter: 0
+  lightsOutOnFail: 0
   theme: {fileID: 8300000, guid: 74ac126383a39d542895466a0b99c73b, type: 3}
-  enterSfx: {fileID: 8300000, guid: 029c5e69d50c7cb42aea8707f05feee5, type: 3}
-  monsterSfx: {fileID: 0}
   voiceSfx: {fileID: 8300000, guid: e3225c76e05d8234e999a612aab89943, type: 3}
   rounds:
   - accepted:

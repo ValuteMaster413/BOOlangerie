@@ -33,9 +33,9 @@ public class IngredientsMenuUI : MonoBehaviour
 
     private void Awake()
     {
-        if (baseTabButton != null) baseTabButton.onClick.AddListener(() => SwitchCategory(IngredientKind.Base));
-        if (fillingTabButton != null) fillingTabButton.onClick.AddListener(() => SwitchCategory(IngredientKind.Filling));
-        if (toppingTabButton != null) toppingTabButton.onClick.AddListener(() => SwitchCategory(IngredientKind.Topping));
+        if (baseTabButton != null) baseTabButton.onClick.AddListener(() => OnTabClicked(IngredientKind.Base));
+        if (fillingTabButton != null) fillingTabButton.onClick.AddListener(() => OnTabClicked(IngredientKind.Filling));
+        if (toppingTabButton != null) toppingTabButton.onClick.AddListener(() => OnTabClicked(IngredientKind.Topping));
         
         if (resetButton != null) resetButton.onClick.AddListener(ResetRecipe);
         if (serveButton != null) serveButton.onClick.AddListener(ServeDish);
@@ -54,6 +54,12 @@ public class IngredientsMenuUI : MonoBehaviour
         
         if (resetButton != null) resetButton.onClick.RemoveListener(ResetRecipe);
         if (serveButton != null) serveButton.onClick.RemoveListener(ServeDish);
+    }
+
+    private void OnTabClicked(IngredientKind category)
+    {
+        if (AudioManager.Instance != null) AudioManager.Instance.PlaySFX("ingredient_list");
+        SwitchCategory(category);
     }
 
     public void SwitchCategory(IngredientKind category)
@@ -88,7 +94,8 @@ public class IngredientsMenuUI : MonoBehaviour
     private void OnIngredientSelected(IngredientData ingredient)
     {
         ShowDescription(ingredient);
-        
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayRandomSFX("ingr_placed");
+
         switch (ingredient.kind)
         {
             case IngredientKind.Base:

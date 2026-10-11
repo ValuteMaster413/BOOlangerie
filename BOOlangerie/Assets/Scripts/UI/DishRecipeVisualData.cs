@@ -17,7 +17,7 @@ public class DishRecipeVisualData : ScriptableObject
     public Sprite GetFillingSprite(IngredientData filling)
     {
         if (filling == null) return null;
-        foreach (var pair in fillingVisuals)
+        foreach (FillingVisualPair pair in fillingVisuals)
         {
             if (pair.filling == filling) return pair.sprite;
         }
@@ -27,7 +27,7 @@ public class DishRecipeVisualData : ScriptableObject
     public Sprite GetToppingSprite(IngredientData topping)
     {
         if (topping == null) return null;
-        foreach (var pair in toppingVisuals)
+        foreach (ToppingVisualPair pair in toppingVisuals)
         {
             if (pair.topping == topping) return pair.sprite;
         }

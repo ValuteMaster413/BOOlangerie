@@ -20,6 +20,7 @@ namespace BOO.UI
         [SerializeField] private GameObject[] lightsOn;
         [SerializeField] private GameObject[] lightsBroken;
         [SerializeField] private GameObject ambientLight;
+        [SerializeField] private GameObject fairyLight;
 
         [Header("Tuning")]
         [SerializeField] private float shiverPixels = 2f;
@@ -31,12 +32,16 @@ namespace BOO.UI
 
         private CustomerData current;
         private bool visible;
+        private const float BlackoutFlickerAlpha = 0.95f;
+
         private bool lit = true;
         private bool warm;
+        private bool blackout;
         private Vector2 bodyHome;
         private bool shivering;
         private float hopOffset;
         private Coroutine sequence;
+        private Action pendingFinish;
         private Coroutine monsterLoop;
         private Coroutine hop;
 
@@ -48,6 +53,7 @@ namespace BOO.UI
             darkness.raycastTarget = false;
 
             if (ambientLight == null) ambientLight = FindByName(lightsOn, "AmbientLight");
+            if (fairyLight == null) fairyLight = FindSibling(darkness.transform, "FairyFire");
 
             SetAlpha(body, 0f);
             monster.enabled = false;
@@ -167,44 +173,69 @@ namespace BOO.UI
             CustomerData customer = gameManager.CurrentCustomer;
             if (visible && customer == current) return;
 
+            CompleteSequence();
+
             current = customer;
-            StartSequence(EnterRoutine(customer));
-        }
-
-        private void Exit()
-        {
-            if (!visible) return;
-
-            StartSequence(ExitRoutine());
-        }
-
-        private void Success()
-        {
-            if (!visible) return;
-
-            shivering = false;
-            if (hop != null) StopCoroutine(hop);
-            hop = StartCoroutine(Hop());
-
-            StartSequence(SuccessRoutine(current));
-        }
-
-        private void Fail()
-        {
-            if (!visible) return;
-
-            shivering = false;
-            StartSequence(current.lightsOutOnFail ? LightsOutRoutine(current) : FailRoutine(current));
-        }
-
-        private IEnumerator EnterRoutine(CustomerData customer)
-        {
             visible = true;
             shivering = false;
             StopMonster();
             SetAlpha(body, 0f);
             SetActive(lightsBroken, false);
 
+            StartSequence(EnterRoutine(customer), () => FinishEnter(customer));
+        }
+
+        private void Exit()
+        {
+            if (!visible) return;
+
+            CompleteSequence();
+
+            visible = false;
+            shivering = false;
+
+            StartSequence(Flicker(HideCustomer, true), FinishExit);
+        }
+
+        private void Success()
+        {
+            if (!visible) return;
+
+            CompleteSequence();
+
+            CustomerData customer = current;
+            shivering = false;
+            if (hop != null) StopCoroutine(hop);
+            hop = StartCoroutine(Hop());
+
+            StartSequence(
+                PlayFrames(body, customer.successFrames, customer.framesPerSecond, false),
+                () => HoldLastFrame(customer.successFrames));
+        }
+
+        private void Fail()
+        {
+            if (!visible) return;
+
+            CompleteSequence();
+
+            CustomerData customer = current;
+            shivering = false;
+
+            if (customer.lightsOutOnFail)
+            {
+                StartSequence(Flicker(null, false), () => FinishLightsOut(customer));
+            }
+            else
+            {
+                StartSequence(
+                    PlayFrames(body, customer.failFrames, customer.framesPerSecond, false),
+                    () => HoldLastFrame(customer.failFrames));
+            }
+        }
+
+        private IEnumerator EnterRoutine(CustomerData customer)
+        {
             if (customer.flickerOnEnter)
             {
                 yield return Flicker(() => ShowBody(IdleStart(customer)), true);
@@ -216,42 +247,39 @@ namespace BOO.UI
             }
 
             yield return PlayFrames(body, customer.entranceFrames, customer.framesPerSecond, false);
+        }
+
+        private void FinishEnter(CustomerData customer)
+        {
+            SetLit(true);
+            ShowBody(IdleEnd(customer));
             shivering = true;
         }
 
-        private IEnumerator ExitRoutine()
+        private void FinishExit()
         {
-            visible = false;
-            shivering = false;
-
-            yield return Flicker(HideCustomer, true);
+            HideCustomer();
             SetActive(lightsBroken, false);
+            SetLit(true);
         }
 
-        private IEnumerator SuccessRoutine(CustomerData customer)
+        private void FinishLightsOut(CustomerData customer)
         {
-            if (!HasFrames(customer.successFrames)) yield break;
-
-            yield return PlayFrames(body, customer.successFrames, customer.framesPerSecond, false);
-        }
-
-        private IEnumerator FailRoutine(CustomerData customer)
-        {
-            if (!HasFrames(customer.failFrames)) yield break;
-
-            yield return PlayFrames(body, customer.failFrames, customer.framesPerSecond, false);
-        }
-
-        private IEnumerator LightsOutRoutine(CustomerData customer)
-        {
-            yield return Flicker(null, false);
+            blackout = true;
+            SetLit(true);
             SetActive(lightsBroken, true);
 
-            if (!HasFrames(customer.failFrames)) yield break;
+            if (!HasFrames(customer.failFrames)) return;
 
+            StopMonster();
             SetAlpha(body, 0f);
             monster.enabled = true;
             monsterLoop = StartCoroutine(PlayFrames(monster, customer.failFrames, customer.framesPerSecond, true));
+        }
+
+        private void HoldLastFrame(Sprite[] frames)
+        {
+            if (HasFrames(frames)) body.sprite = frames[frames.Length - 1];
         }
 
         private IEnumerator Flicker(Action atLastDark, bool endLit)
@@ -307,6 +335,13 @@ namespace BOO.UI
             return HasFrames(customer.entranceFrames) ? customer.entranceFrames[0] : customer.sprite;
         }
 
+        private static Sprite IdleEnd(CustomerData customer)
+        {
+            Sprite[] frames = customer.entranceFrames;
+
+            return HasFrames(frames) ? frames[frames.Length - 1] : customer.sprite;
+        }
+
         private void ShowBody(Sprite sprite)
         {
             body.sprite = sprite;
@@ -329,9 +364,29 @@ namespace BOO.UI
         private void SetLit(bool value)
         {
             lit = value;
-            SetActive(lightsOn, lit);
+
+            if (blackout)
+            {
+                SetActive(lightsOn, false);
+                if (fairyLight != null) fairyLight.SetActive(lit);
+                SetAlpha(darkness, lit ? darkAlpha : BlackoutFlickerAlpha);
+            }
+            else
+            {
+                SetActive(lightsOn, lit);
+                if (fairyLight != null) fairyLight.SetActive(false);
+                SetAlpha(darkness, lit ? 0f : darkAlpha);
+            }
+
             if (ambientLight != null) ambientLight.SetActive(lit && warm);
-            SetAlpha(darkness, lit ? 0f : darkAlpha);
+        }
+
+        private static GameObject FindSibling(Transform of, string objectName)
+        {
+            Transform parent = of.parent;
+            Transform found = parent != null ? parent.Find(objectName) : null;
+
+            return found != null ? found.gameObject : null;
         }
 
         private static GameObject FindByName(GameObject[] objects, string objectName)
@@ -346,10 +401,30 @@ namespace BOO.UI
             return null;
         }
 
-        private void StartSequence(IEnumerator routine)
+        private void StartSequence(IEnumerator routine, Action finish)
+        {
+            pendingFinish = finish;
+            sequence = StartCoroutine(RunSequence(routine));
+        }
+
+        private IEnumerator RunSequence(IEnumerator routine)
+        {
+            yield return routine;
+
+            sequence = null;
+            CompleteSequence();
+        }
+
+        private void CompleteSequence()
         {
             if (sequence != null) StopCoroutine(sequence);
-            sequence = StartCoroutine(routine);
+            sequence = null;
+
+            if (pendingFinish == null) return;
+
+            Action finish = pendingFinish;
+            pendingFinish = null;
+            finish();
         }
 
         private static bool HasFrames(Sprite[] frames)

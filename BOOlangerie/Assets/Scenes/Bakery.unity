@@ -942,15 +942,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1621997730350681930, guid: 205c97060b49b9345b43f7a9ace5bf8c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.6259255
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1621997730350681930, guid: 205c97060b49b9345b43f7a9ace5bf8c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.6259255
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1621997730350681930, guid: 205c97060b49b9345b43f7a9ace5bf8c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.6259255
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1621997730350681930, guid: 205c97060b49b9345b43f7a9ace5bf8c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1427,6 +1427,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialogueUI
       objectReference: {fileID: 0}
+    - target: {fileID: 6300419761515760805, guid: fe813af2b1fe3424abc0fe7f532c299f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7092326378241167052, guid: fe813af2b1fe3424abc0fe7f532c299f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1630,7 +1634,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3339620809074541974, guid: f7e6cf7504d0431459ec0d2f8ba2cdca, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5297795779617128771, guid: f7e6cf7504d0431459ec0d2f8ba2cdca, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1816,6 +1820,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WarmthMeterUI
       objectReference: {fileID: 0}
+    - target: {fileID: 8582807987921294673, guid: f7e6cf7504d0431459ec0d2f8ba2cdca, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8979886889281447174, guid: f7e6cf7504d0431459ec0d2f8ba2cdca, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1947,7 +1955,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4733833453432117719, guid: a198c203e0290dc4fa5009d9173e3a69, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

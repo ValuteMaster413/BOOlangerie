@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16bec1f354cc7e54292aa9aec52e35eb, type: 3}
-  m_Name: Brioche
+  m_Name: Wallnuts
   m_EditorClassIdentifier: Assembly-CSharp::BOO.Data.IngredientData
-  id: brioche
-  displayName: Brioche
+  id: wallnuts
+  displayName: Wallnuts
   icon: {fileID: 0}
-  description: 
-  kind: 0
-  flavor: 0
+  description: If a wallnut falls in a forest and no one around to hear it...
+  kind: 2
+  flavor: 8

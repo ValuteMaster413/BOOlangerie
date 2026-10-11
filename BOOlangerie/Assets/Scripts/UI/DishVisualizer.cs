@@ -20,37 +20,26 @@ public class DishVisualizer : MonoBehaviour
             ClearVisuals();
             return;
         }
-        
-        DishRecipeVisualData config = visualConfigs.Find(c => c.baseIngredient == recipe.selectedBase);
+
+        DishRecipeVisualData config = visualConfigs.Find(c => c != null && c.baseIngredient == recipe.selectedBase);
 
         if (config == null)
         {
-            Debug.LogWarning($"Visual config not found for base: {recipe.selectedBase.displayName}");
-            ClearVisuals();
+            SetElementVisual(baseImage, IconOf(recipe.selectedBase), true);
+            SetElementVisual(fillingImage, IconOf(recipe.selectedFilling), true);
+            SetElementVisual(toppingImage, IconOf(recipe.selectedTopping), true);
             return;
         }
-        
+
         SetElementVisual(baseImage, config.baseSprite, true);
 
         Sprite fillingSprite = config.GetFillingSprite(recipe.selectedFilling);
-        if (fillingSprite != null)
-        {
-            SetElementVisual(fillingImage, fillingSprite, true);
-        }
-        else
-        {
-            SetElementVisual(fillingImage, null, false);
-        }
+        if (fillingSprite == null) fillingSprite = IconOf(recipe.selectedFilling);
+        SetElementVisual(fillingImage, fillingSprite, true);
 
         Sprite toppingSprite = config.GetToppingSprite(recipe.selectedTopping);
-        if (toppingSprite != null)
-        {
-            SetElementVisual(toppingImage, toppingSprite, true);
-        }
-        else
-        {
-            SetElementVisual(toppingImage, null, false);
-        }
+        if (toppingSprite == null) toppingSprite = IconOf(recipe.selectedTopping);
+        SetElementVisual(toppingImage, toppingSprite, true);
     }
 
     public void ClearVisuals()
@@ -60,6 +49,11 @@ public class DishVisualizer : MonoBehaviour
         SetElementVisual(toppingImage, null, false);
     }
 
+    private Sprite IconOf(IngredientData ingredient)
+    {
+        return ingredient != null ? ingredient.icon : null;
+    }
+
     private void SetElementVisual(Image imgComponent, Sprite sprite, bool isVisible)
     {
         if (imgComponent == null) return;
@@ -67,6 +61,7 @@ public class DishVisualizer : MonoBehaviour
         if (isVisible && sprite != null)
         {
             imgComponent.sprite = sprite;
+            imgComponent.preserveAspect = true;
             imgComponent.gameObject.SetActive(true);
         }
         else

@@ -14,19 +14,23 @@ public class IngredientsMenuUI : MonoBehaviour
     [SerializeField] private Button baseTabButton;
     [SerializeField] private Button fillingTabButton;
     [SerializeField] private Button toppingTabButton;
-    
+
     [Header("Ingredient Slots")]
     [SerializeField] private List<IngredientSlotUI> ingredientSlots;
 
     [Header("Action Buttons")]
     [SerializeField] private Button resetButton;
     [SerializeField] private Button serveButton;
-    
+
     [Header("Visualizer")]
     [SerializeField] private DishVisualizer dishVisualizer;
-    
+
     [Header("Description Panel")]
     [SerializeField] private TextMeshProUGUI descriptionText;
+
+    [Header("Colors")]
+    [SerializeField] private Color normalColor = new Color(0.953f, 0.894f, 0.78f);
+    [SerializeField] private Color selectedColor = new Color(0.961f, 0.722f, 0.255f);
 
     private IngredientKind currentCategory = IngredientKind.Base;
     private CurrentRecipe currentRecipe = new CurrentRecipe();
@@ -36,14 +40,15 @@ public class IngredientsMenuUI : MonoBehaviour
         if (baseTabButton != null) baseTabButton.onClick.AddListener(() => OnTabClicked(IngredientKind.Base));
         if (fillingTabButton != null) fillingTabButton.onClick.AddListener(() => OnTabClicked(IngredientKind.Filling));
         if (toppingTabButton != null) toppingTabButton.onClick.AddListener(() => OnTabClicked(IngredientKind.Topping));
-        
+
         if (resetButton != null) resetButton.onClick.AddListener(ResetRecipe);
         if (serveButton != null) serveButton.onClick.AddListener(ServeDish);
     }
 
-    private void Start()
+    private void OnEnable()
     {
         SwitchCategory(IngredientKind.Base);
+        RefreshDish();
     }
 
     private void OnDestroy()
@@ -51,7 +56,7 @@ public class IngredientsMenuUI : MonoBehaviour
         if (baseTabButton != null) baseTabButton.onClick.RemoveAllListeners();
         if (fillingTabButton != null) fillingTabButton.onClick.RemoveAllListeners();
         if (toppingTabButton != null) toppingTabButton.onClick.RemoveAllListeners();
-        
+
         if (resetButton != null) resetButton.onClick.RemoveListener(ResetRecipe);
         if (serveButton != null) serveButton.onClick.RemoveListener(ServeDish);
     }
@@ -66,11 +71,12 @@ public class IngredientsMenuUI : MonoBehaviour
     {
         currentCategory = category;
         UpdateVisibleIngredients();
+        RefreshTabs();
     }
 
     private void UpdateVisibleIngredients()
     {
-        List<IngredientData> filteredIngredients = allIngredients.FindAll(ing => ing.kind == currentCategory);
+        List<IngredientData> filteredIngredients = allIngredients.FindAll(ing => ing != null && ing.kind == currentCategory);
 
         for (int i = 0; i < ingredientSlots.Count; i++)
         {
@@ -84,16 +90,13 @@ public class IngredientsMenuUI : MonoBehaviour
                 ingredientSlots[i].gameObject.SetActive(false);
             }
         }
-        
-        if (descriptionText != null)
-        {
-            descriptionText.text = "Select an ingredient...";
-        }
+
+        RefreshSlots();
+        ShowDescription(SelectedIn(currentCategory));
     }
 
     private void OnIngredientSelected(IngredientData ingredient)
     {
-        ShowDescription(ingredient);
         if (AudioManager.Instance != null) AudioManager.Instance.PlayRandomSFX("ingr_placed");
 
         switch (ingredient.kind)
@@ -111,30 +114,74 @@ public class IngredientsMenuUI : MonoBehaviour
                 Debug.Log($"Topping selected: {ingredient.displayName}");
                 break;
         }
-        
-        if (dishVisualizer != null)
+
+        RefreshSlots();
+        ShowDescription(ingredient);
+        RefreshDish();
+    }
+
+    private IngredientData SelectedIn(IngredientKind category)
+    {
+        switch (category)
         {
-            dishVisualizer.DisplayDish(currentRecipe);
+            case IngredientKind.Base: return currentRecipe.selectedBase;
+            case IngredientKind.Filling: return currentRecipe.selectedFilling;
+            default: return currentRecipe.selectedTopping;
         }
+    }
+
+    private void RefreshSlots()
+    {
+        IngredientData selected = SelectedIn(currentCategory);
+
+        foreach (IngredientSlotUI slot in ingredientSlots)
+        {
+            bool isSelected = selected != null && slot.Ingredient == selected;
+            slot.SetColor(isSelected ? selectedColor : normalColor);
+        }
+    }
+
+    private void RefreshTabs()
+    {
+        SetTabColor(baseTabButton, IngredientKind.Base);
+        SetTabColor(fillingTabButton, IngredientKind.Filling);
+        SetTabColor(toppingTabButton, IngredientKind.Topping);
+    }
+
+    private void SetTabColor(Button tab, IngredientKind category)
+    {
+        if (tab == null || tab.image == null) return;
+
+        tab.image.color = category == currentCategory ? selectedColor : normalColor;
+    }
+
+    private void RefreshDish()
+    {
+        if (dishVisualizer != null) dishVisualizer.DisplayDish(currentRecipe);
+        if (serveButton != null) serveButton.interactable = currentRecipe.IsValid();
     }
 
     private void ShowDescription(IngredientData ingredient)
     {
-        if (descriptionText != null && ingredient != null)
+        if (descriptionText == null) return;
+
+        if (ingredient == null)
         {
-            descriptionText.text = ingredient.description;
+            descriptionText.text = $"Pick a {currentCategory.ToString().ToLowerInvariant()}...";
+            return;
         }
+
+        descriptionText.text = $"<size=130%>{ingredient.displayName}</size>\n{ingredient.description}";
     }
-    
+
     private void ResetRecipe()
     {
         currentRecipe.Reset();
         Debug.Log("Recipe reset!");
-        
-        if (dishVisualizer != null)
-        {
-            dishVisualizer.ClearVisuals();
-        }
+
+        RefreshSlots();
+        ShowDescription(null);
+        RefreshDish();
     }
 
     private void ServeDish()
@@ -149,15 +196,15 @@ public class IngredientsMenuUI : MonoBehaviour
         order.baseItem = currentRecipe.selectedBase;
         order.filling = currentRecipe.selectedFilling;
         order.topping = currentRecipe.selectedTopping;
-        
+
         Debug.Log($"Serving dish -> Base: {currentRecipe.selectedBase?.displayName}, " +
                   $"Filling: {currentRecipe.selectedFilling?.displayName ?? "None"}, " +
                   $"Topping: {currentRecipe.selectedTopping?.displayName ?? "None"}");
-        
-        
+
+
         currentRecipe.Reset();
         FindObjectOfType<BakeryViewController>()?.ShowCounterStation();
-        
+
         GameManager.Instance.Serve(order);
     }
 }

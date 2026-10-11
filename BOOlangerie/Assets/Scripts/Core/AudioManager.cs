@@ -14,6 +14,10 @@ namespace BOO.Core
         [Header("Music")]
         [SerializeField] private float musicFadeTime = 0.6f;
 
+        [Header("UI Sounds")]
+        [SerializeField] private AudioClip[] clickSfx;
+        [SerializeField] private AudioClip[] hoverSfx;
+
         private const string MUSIC_KEY = "MusicVolume";
         private const string SFX_KEY = "SFXVolume";
 
@@ -85,6 +89,23 @@ namespace BOO.Core
         {
             if (sfxSource != null && clip != null)
                 sfxSource.PlayOneShot(clip);
+        }
+
+        public void PlayClick()
+        {
+            PlayRandom(clickSfx);
+        }
+
+        public void PlayHover()
+        {
+            PlayRandom(hoverSfx);
+        }
+
+        private void PlayRandom(AudioClip[] clips)
+        {
+            if (clips == null || clips.Length == 0) return;
+
+            PlaySFX(clips[Random.Range(0, clips.Length)]);
         }
 
         private IEnumerator SwapMusic(AudioClip next)

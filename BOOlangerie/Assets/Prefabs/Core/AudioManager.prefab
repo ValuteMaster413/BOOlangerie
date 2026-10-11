@@ -178,6 +178,14 @@ MonoBehaviour:
   musicSource: {fileID: 1683887211863290626}
   sfxSource: {fileID: 865955295605454677}
   musicFadeTime: 0.6
+  clickSfx:
+  - {fileID: 8300000, guid: 226a4ab791712b94a9373fef8807fb7a, type: 3}
+  - {fileID: 8300000, guid: c9d2a3663508b5e4eb110300cf67cf1a, type: 3}
+  - {fileID: 8300000, guid: 5a8af6ea8e1e0c84aa1dc848249d0ff6, type: 3}
+  hoverSfx:
+  - {fileID: 8300000, guid: 9cf3cbadbe9afe9498b7ebf9e3451857, type: 3}
+  - {fileID: 8300000, guid: 40a023347b4f3e2438480021ed53058a, type: 3}
+  - {fileID: 8300000, guid: 74a858298454eb94383f12e3e4f3ffec, type: 3}
 --- !u!1 &8711976008340352177
 GameObject:
   m_ObjectHideFlags: 0

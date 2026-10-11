@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4188174371042951717}
   - component: {fileID: 7248333903902452541}
   - component: {fileID: 4470983348000669780}
+  - component: {fileID: 4582868925576335045}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
@@ -111,6 +112,18 @@ MonoBehaviour:
   hoverColor: {r: 1, g: 1, b: 1, a: 1}
   hoverOutlineWidth: 0.22
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
+--- !u!114 &4582868925576335045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199802567448547742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4197ded010eca04a81eff13b63f0443, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BOO.UI.ButtonSfx
 --- !u!1 &251810253752140427
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,6 +343,7 @@ GameObject:
   - component: {fileID: 5524227437855330809}
   - component: {fileID: 4750336505599945083}
   - component: {fileID: 8074272563516389149}
+  - component: {fileID: 4171879320307753536}
   m_Layer: 5
   m_Name: QuitButton
   m_TagString: Untagged
@@ -430,6 +444,18 @@ MonoBehaviour:
   hoverColor: {r: 1, g: 1, b: 1, a: 1}
   hoverOutlineWidth: 0.22
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
+--- !u!114 &4171879320307753536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699836246918867703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4197ded010eca04a81eff13b63f0443, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BOO.UI.ButtonSfx
 --- !u!1 &2405687810546245991
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,6 +467,7 @@ GameObject:
   - component: {fileID: 1044111079188523676}
   - component: {fileID: 5036129822665516471}
   - component: {fileID: 872554708929169621}
+  - component: {fileID: 3648329531983616406}
   m_Layer: 5
   m_Name: CreditsButton
   m_TagString: Untagged
@@ -541,6 +568,18 @@ MonoBehaviour:
   hoverColor: {r: 1, g: 1, b: 1, a: 1}
   hoverOutlineWidth: 0.22
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
+--- !u!114 &3648329531983616406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2405687810546245991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4197ded010eca04a81eff13b63f0443, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BOO.UI.ButtonSfx
 --- !u!1 &4203961758364963209
 GameObject:
   m_ObjectHideFlags: 0
@@ -1175,6 +1214,7 @@ GameObject:
   - component: {fileID: 4783913100910945122}
   - component: {fileID: 2745690052573193659}
   - component: {fileID: 1976350374674844481}
+  - component: {fileID: 3776161792790861505}
   m_Layer: 5
   m_Name: SettingsButton
   m_TagString: Untagged
@@ -1275,3 +1315,15 @@ MonoBehaviour:
   hoverColor: {r: 1, g: 1, b: 1, a: 1}
   hoverOutlineWidth: 0.22
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
+--- !u!114 &3776161792790861505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9003212752092730276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4197ded010eca04a81eff13b63f0443, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BOO.UI.ButtonSfx

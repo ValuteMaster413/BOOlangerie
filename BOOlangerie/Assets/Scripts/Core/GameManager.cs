@@ -89,7 +89,8 @@ namespace BOO.Core
 
             if (customerIndex >= customers.Length)
             {
-                SceneManager.LoadScene(endingScene);
+                if (SceneTransitionManager.Instance != null) SceneTransitionManager.Instance.LoadScene(endingScene);
+                else SceneManager.LoadScene(endingScene);
                 return;
             }
 

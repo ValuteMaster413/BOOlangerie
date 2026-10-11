@@ -9,9 +9,10 @@ namespace BOO.Core
 {
     public class DialogueRunner : MonoBehaviour
     {
-        [SerializeField] private GameManager gameManager;
+        [SerializeField] private GameManager gameManager; // only assign in Bakery
         [SerializeField] private InkFile inkFile;
         [SerializeField] private string introKnot = "intro";
+        [SerializeField] private bool playIntroOnStart;
 
         private Story story;
         private string speaker = "";
@@ -39,14 +40,23 @@ namespace BOO.Core
 
         private void OnEnable()
         {
+            if (gameManager == null) return;
+
             gameManager.StateChanged += OnStateChanged;
             gameManager.OrderServed += OnOrderServed;
         }
 
         private void OnDisable()
         {
+            if (gameManager == null) return;
+
             gameManager.StateChanged -= OnStateChanged;
             gameManager.OrderServed -= OnOrderServed;
+        }
+
+        private void Start()
+        {
+            if (playIntroOnStart) Play(introKnot);
         }
 
         private void OnOrderServed(OrderResult result)
@@ -91,7 +101,7 @@ namespace BOO.Core
             while (story.canContinue)
             {
                 string text = story.Continue().Trim();
-                speaker = "";
+                speaker = ""; // narrator
                 ReadTags();
                 if (text.Length == 0) continue;
 
@@ -147,7 +157,7 @@ namespace BOO.Core
         {
             IsPlaying = false;
             Finished?.Invoke();
-            gameManager.DialogueFinished();
+            if (gameManager != null) gameManager.DialogueFinished();
         }
 
         private IEnumerator FinishNextFrame()

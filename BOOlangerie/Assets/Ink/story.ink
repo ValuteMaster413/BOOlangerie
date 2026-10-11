@@ -26,7 +26,7 @@ But, even though I'm up to <i>my hair</i> in work, I wouldn't trade my bakery fo
 -> DONE
 
 === moth_r1 ===
-Was that the door? I could have sworn I made sure to lock up...
+Was that the door? I could have sworn I made sure to lock up... #sfx: door_chime
 * [Better stay quiet.]
     Nope. Not today.
     I've seen enough slasher movies to know you should <i>never</i> call out to the spooky figure.
@@ -36,7 +36,7 @@ Was that the door? I could have sworn I made sure to lock up...
     Um, excuse me? The shop's currently closed right now, please come back tomorrow! #speaker: Me
     Preferably when we're still open...
 - What is that? #speaker: Me
-Shock reels me back on my feet, causing me to nearly crash into the newly placed stock behind me.
+Shock reels me back on my feet, causing me to nearly crash into the newly placed stock behind me. #anim: enter #music: theme
 O-O-Ok, that is a <i>very</i> large bug. Or wait... is it an insect? No, a <i>moth</i>!
 My eyes desperately scan for answers.
 Halloween is tomorrow, right? Yeah! It's got to be some sort of Halloween thing!
@@ -82,7 +82,7 @@ Oh how I miss France... #speaker: Posh Moth Lady #order
 
 === moth_r1_bad ===
 ... #speaker: Posh Moth Lady
-Does she not like it?
+Does she not like it? #food: gone
 ............... #speaker: Posh Moth Lady
 Um, Miss, is there a problem? #speaker: Me
 She's so quiet. It's a bit unnerving...
@@ -91,30 +91,30 @@ Crap.
 I'm so sorry! I'll remake it right away! #speaker: Me
 Ah, but you see, I'm feeling rather <i>frigid</i> today. #speaker: Posh Moth Lady
 N-No please don't hurt- #speaker: Me
-<i>Light is a privilege darling!~</i> #speaker: Posh Moth Lady #anim: monster #voice
+<i>Light is a privilege darling!~</i> #speaker: Posh Moth Lady #anim: fail #sfx: lights_break #voice
 Hey! You know I just bought those! #speaker: Me
-Ah! This sucks sooo much! #speaker: Me
+Ah! This sucks sooo much! #speaker: Me #anim: exit
 -> DONE
 
 === moth_r1_good ===
 ... #speaker: Posh Moth Lady
-Does she not like it?
+Does she not like it? #food: gone
 My goodness child! This is <i>quite</i> lovely! #speaker: Posh Moth Lady
 I-I'm so glad you enjoyed it! #speaker: Me
 Oh, enjoy is an understatement, how positively delicious! #speaker: Posh Moth Lady
-Ah, I can feel my body rejuvenating! I just might make it back home after all. #speaker: Posh Moth Lady
+Ah, I can feel my body rejuvenating! I just might make it back home after all. #speaker: Posh Moth Lady #anim: success
 I feel myself blush slightly at her praise and laugh awkwardly.
 I-I'm glad you're feeling better. #speaker: Me
-Au revoir dearie~ #speaker: Posh Moth Lady #voice
+Au revoir dearie~ #speaker: Posh Moth Lady #voice #anim: exit
 -> DONE
 
 === pumpkin_r1 ===
 Well, that was interesting. #speaker: Me
 I move to exit the counter, ready to make a beeline for the door.
 Definitely time to head out before any more- #speaker: Me
-... #speaker: Me
+... #speaker: Me #sfx: door_chime
 Is that a pumpkin? A pumpkin wearing a trench coat?
-I stifle a laugh as I watch the Pumpkin Head Man flimsily move to the counter, his pumpkin head hanging precariously off his straw-like body.
+I stifle a laugh as I watch the Pumpkin Head Man flimsily move to the counter, his pumpkin head hanging precariously off his straw-like body. #anim: enter #music: theme
 He's definitely had a <i>bit</i> too much pumpkin juice tonight.
 One. #speaker: Pumpkin Head . . . Man?
 Yes, one! #speaker: Pumpkin Head . . . Man?
@@ -183,9 +183,9 @@ No need! We can smell that disgusting slop you call a baked good from here. #spe
 Tweedle dumb chimes in.
 Yes, slop you call a baked good! #speaker: Pumpkin Head . . . Man?
 Ok, now you're really- #speaker: Me
-What the- #speaker: Me
+What the- #speaker: Me #anim: fail #sfx: coin_jingle
 S-Sorry! #speaker: Pumpkin Head . . . Man?
-One of the voices shouts out as they exit the shop, in a feeble attempt to restore the peace.
+One of the voices shouts out as they exit the shop, in a feeble attempt to restore the peace. #anim: exit
 H-Hey! Get back here! #speaker: Me
 ... #speaker: Me
 You know what, it's pumpkin <i>everything</i> next month. #speaker: Me
@@ -196,7 +196,7 @@ No mercy. #speaker: Me
 
 === pumpkin_r1_good ===
 And... Here you are! One fresh, delicious treat to warm your pumpkiny tails. #speaker: Me
-Oh, my, this is good! #speaker: Pumpkin Head . . . Man? #voice
+Oh, my, this is good! #speaker: Pumpkin Head . . . Man? #voice #food: gone
 Yes, good! #speaker: Pumpkin Head . . . Man?
 I-It is very, very yummy! #speaker: Pumpkin Head . . . Man?
 I smirk slightly and cross my arms.
@@ -217,7 +217,7 @@ But- #speaker: Pumpkin Head . . . Man?
 A silence that can only be described as a <i>death glare</i> under a coat follows.
 Fine. #speaker: Pumpkin Head . . . Man?
 Yes, fine. #speaker: Pumpkin Head . . . Man?
-... #speaker: Me
+... #speaker: Me #anim: success #sfx: mice_rattled
 ... #speaker: Me
 Mice. You're mice. #speaker: Me
 I stare in shock at the three scruffy creatures.
@@ -263,7 +263,7 @@ Ah yes. <i>Very convincing</i> indeed. #speaker: Me
     Good bye humany boss waiter! #speaker: Pumpkin Head . . . Mice?
     Yes, good bye! #speaker: Pumpkin Head . . . Mice?
     We are off to do very important pumpkiny mice business! #speaker: Pumpkin Head . . . Mice?
-- I <i>think</i> they'll be alright. #speaker: Me
+- I <i>think</i> they'll be alright. #speaker: Me #anim: exit
 -> DONE
 
 === bakedanuki_r1 ===
@@ -272,9 +272,9 @@ I admit, I'm losing it <i>a bit</i>, but hey, the only craziness I was expecting
 Be it unicorn, minotaur, or mermaid, <i>I don't care!</i> #speaker: Me
 Halloween is tomorrow folks! <i>Tomorrow!</i> #speaker: Me
 I <i>will</i> go home and get some <i>sleep!</i> #speaker: Me
-WE. ARE. CLOSED! #speaker: Me
+WE. ARE. CLOSED! #speaker: Me #sfx: door_chime #anim: enter
 A-Achoo! #speaker: Cute Racoon-Dog!
-A little creature stares wide-eyed at me, nose running slightly, and paws trembling.
+A little creature stares wide-eyed at me, nose running slightly, and paws trembling. #music: theme
 They're the cutest thing I've ever seen in all my life, and I just yelled at them like they were nothing more than annoying <i>pest.</i>
 O-Oh my god! I was just angry and- I shouldn't have yelled! #speaker: Me
 The creature, who looks like a perfect mix between a dog and a racoon, blinks up at me, not saying a word.
@@ -309,21 +309,21 @@ Gosh, that was a bit cryptic, but I'll do my very best!
 === bakedanuki_r1_bad ===
 I feel myself getting nervous as I return with the food.
 This is for you! Please let me know how it tastes! #speaker: Me
-I hope they don't hate it! I couldn't bear it if they got mad at me...
+I hope they don't hate it! I couldn't bear it if they got mad at me... #food: gone
 Oh who am I kidding, they look like they wouldn't harm a-
 This is rotten stupid mortal. #speaker: Cute Racoon-Dog! #voice
 ...
 Haha sorry I must have dozed for a second, can you repeat that. #speaker: Me
 Rotten. Rotten and repulsive. I wouldn't feed this to... Well, anyone. #speaker: Cute Racoon-Dog!
 Um, is there anything I can- #speaker: Me
-There. Now you have more ingredients. #speaker: Cute Racoon-Dog!
-I-I can't even get mad at this point. #speaker: Me
+There. Now you have more ingredients. #speaker: Cute Racoon-Dog! #anim: fail #sfx: bake_danuki_magic
+I-I can't even get mad at this point. #speaker: Me #anim: exit
 -> DONE
 
 === bakedanuki_r1_good ===
 I feel myself getting nervous as I return with the food.
 This is for you! Please let me know how it tastes! #speaker: Me
-The creature munches loudly, their little teeth digging through each bite.
+The creature munches loudly, their little teeth digging through each bite. #food: gone
 T-They sure are hungry!
 After a few moments they finish. I notice crumbs and spare bits of food caught in their fur.
 So what did you think? #speaker: Me
@@ -332,9 +332,9 @@ The creature burps loudly.
 You bake well. I will be back. I will also tell others about you and expand your small bakery to an empire. #speaker: Cute Racoon-Dog! #voice
 Empire??
 W-Wow! Um, you don't have to do all that! #speaker: Me
-On the house. #speaker: Cute Racoon-Dog!
+On the house. #speaker: Cute Racoon-Dog! #anim: success
 O-Oh, thank you! #speaker: Me
-Heh, seems like trick or treating came a day early this year. #speaker: Me
+Heh, seems like trick or treating came a day early this year. #speaker: Me #anim: exit
 -> DONE
 
 === game_end ===

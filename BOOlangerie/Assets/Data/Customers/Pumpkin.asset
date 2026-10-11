@@ -17,7 +17,7 @@ MonoBehaviour:
   sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   monsterSprite: {fileID: 0}
   theme: {fileID: 8300000, guid: 74ac126383a39d542895466a0b99c73b, type: 3}
-  enterSfx: {fileID: 0}
+  enterSfx: {fileID: 8300000, guid: 029c5e69d50c7cb42aea8707f05feee5, type: 3}
   monsterSfx: {fileID: 0}
   voiceSfx: {fileID: 8300000, guid: e3225c76e05d8234e999a612aab89943, type: 3}
   rounds:

@@ -53,7 +53,7 @@ public class PauseMenuUI : MonoBehaviour
 
     private void Update()
     {
-        var keyboard = Keyboard.current;
+        Keyboard keyboard = Keyboard.current;
         if (keyboard == null) return;
         
         if (keyboard.escapeKey.wasPressedThisFrame)

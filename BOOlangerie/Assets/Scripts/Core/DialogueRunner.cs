@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Choice = Ink.Runtime.Choice;
 using InkFile = Ink.UnityIntegration.InkFile;
 using Story = Ink.Runtime.Story;
 
@@ -154,10 +155,10 @@ namespace BOO.Core
 
         public List<string> GetChoices()
         {
-            var texts = new List<string>();
+            List<string> texts = new List<string>();
             if (story == null) return texts;
 
-            foreach (var choice in story.currentChoices) texts.Add(choice.text);
+            foreach (Choice choice in story.currentChoices) texts.Add(choice.text);
             return texts;
         }
 
@@ -172,7 +173,7 @@ namespace BOO.Core
         private bool ReadTags()
         {
             bool isOrder = false;
-            var tags = story.currentTags;
+            List<string> tags = story.currentTags;
             if (tags == null) return false;
 
             foreach (string tag in tags)

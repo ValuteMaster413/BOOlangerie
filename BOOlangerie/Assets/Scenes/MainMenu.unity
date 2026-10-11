@@ -971,14 +971,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2392462055874446326, guid: 1755256a243a7b844aba5e9b63252a45, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -24
-      objectReference: {fileID: 0}
-    - target: {fileID: 2392462055874446326, guid: 1755256a243a7b844aba5e9b63252a45, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -136
-      objectReference: {fileID: 0}
     - target: {fileID: 2477105101075590200, guid: 1755256a243a7b844aba5e9b63252a45, type: 3}
       propertyPath: creditsPanel
       value: 
@@ -1126,14 +1118,6 @@ PrefabInstance:
     - target: {fileID: 6035088552343957296, guid: 1755256a243a7b844aba5e9b63252a45, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6035088552343957296, guid: 1755256a243a7b844aba5e9b63252a45, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 233
-      objectReference: {fileID: 0}
-    - target: {fileID: 6035088552343957296, guid: 1755256a243a7b844aba5e9b63252a45, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 207
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

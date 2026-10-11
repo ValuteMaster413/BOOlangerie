@@ -12,39 +12,59 @@ namespace BOO.UI
         [Range(0f, 1f)][SerializeField] private float hoverOutlineWidth = 0f;
         [SerializeField] private Color outlineColor = Color.black;
 
+        private bool hovered;
+        private bool pinned;
+
         private void Awake()
         {
-            if (text == null) text = GetComponentInChildren<TMP_Text>();
+            FindText();
         }
 
         private void OnEnable()
         {
-            Apply(false);
+            hovered = false;
+            Apply();
         }
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            Apply(true);
+            hovered = true;
+            Apply();
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            Apply(false);
+            hovered = false;
+            Apply();
         }
 
-        private void Apply(bool hovered)
+        public void SetPinned(bool value)
         {
-            text.color = hovered ? hoverColor : normalColor;
+            pinned = value;
+            Apply();
+        }
+
+        private void FindText()
+        {
+            if (text == null) text = GetComponentInChildren<TMP_Text>(true);
+        }
+
+        private void Apply()
+        {
+            FindText();
+
+            bool highlighted = hovered || pinned;
+            text.color = highlighted ? hoverColor : normalColor;
 
             if (hoverOutlineWidth <= 0f) return;
 
-            if (hovered)
+            if (highlighted)
             {
                 text.fontMaterial.EnableKeyword(ShaderUtilities.Keyword_Outline);
                 text.outlineColor = outlineColor;
             }
 
-            text.outlineWidth = hovered ? hoverOutlineWidth : 0f;
+            text.outlineWidth = highlighted ? hoverOutlineWidth : 0f;
         }
     }
 }

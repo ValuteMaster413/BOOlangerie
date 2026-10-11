@@ -10,6 +10,9 @@ namespace BOO.Data
         public string displayName;
         public Sprite sprite;
         public Sprite monsterSprite;
+        public AudioClip theme;
+        public AudioClip enterSfx;
+        public AudioClip monsterSfx;
         public OrderRound[] rounds;
     }
 }

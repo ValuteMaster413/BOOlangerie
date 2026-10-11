@@ -20,6 +20,7 @@ namespace BOO.UI
         [SerializeField] private Button autoButton;
         [SerializeField] private Transform choiceContainer;
         [SerializeField] private Button choiceButtonPrefab;
+        [SerializeField] private AudioClip advanceSfx;
 
         [Header("Typewriter")]
         [SerializeField] private float slowest = 20f;
@@ -118,6 +119,7 @@ namespace BOO.UI
             if (runner.HasChoices) return;
 
             StopAutoWait();
+            PlayAdvanceSfx();
             runner.Advance();
         }
 
@@ -186,8 +188,14 @@ namespace BOO.UI
 
         private void OnChoiceClicked(int index)
         {
+            PlayAdvanceSfx();
             ClearChoices();
             runner.Choose(index);
+        }
+
+        private void PlayAdvanceSfx()
+        {
+            if (AudioManager.Instance != null) AudioManager.Instance.PlaySFX(advanceSfx);
         }
 
         private void ClearChoices()

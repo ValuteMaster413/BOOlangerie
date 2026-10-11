@@ -115,6 +115,13 @@ namespace BOO.UI
             ResetLights();
             body.sprite = customer.sprite;
             shivering = true;
+
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlaySFX(customer.enterSfx);
+                AudioManager.Instance.PlayMusic(customer.theme);
+            }
+
             yield return FadeBody(1f);
         }
 
@@ -158,6 +165,8 @@ namespace BOO.UI
 
         private IEnumerator LightsOut()
         {
+            if (AudioManager.Instance != null && shown != null) AudioManager.Instance.PlaySFX(shown.monsterSfx);
+
             for (int i = 0; i < flickers; i++)
             {
                 SetAlpha(darkness, darkAlpha);

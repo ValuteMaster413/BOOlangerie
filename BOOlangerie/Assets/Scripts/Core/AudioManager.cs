@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace BOO.Core
@@ -10,9 +11,15 @@ namespace BOO.Core
         [SerializeField] private AudioSource musicSource;
         [SerializeField] private AudioSource sfxSource;
 
-        [Header("Settings Keys")]
+        [Header("Music")]
+        [SerializeField] private float musicFadeTime = 0.6f;
+
         private const string MUSIC_KEY = "MusicVolume";
         private const string SFX_KEY = "SFXVolume";
+
+        private AudioClip currentMusic;
+        private float musicFade = 1f;
+        private Coroutine musicSwap;
 
         public float MusicVolume { get; private set; }
         public float SFXVolume { get; private set; }
@@ -36,14 +43,14 @@ namespace BOO.Core
             MusicVolume = PlayerPrefs.GetFloat(MUSIC_KEY, 0.75f);
             SFXVolume = PlayerPrefs.GetFloat(SFX_KEY, 0.75f);
 
-            ApplyMusicVolume(MusicVolume);
-            ApplySFXVolume(SFXVolume);
+            ApplyMusicVolume();
+            ApplySFXVolume();
         }
 
         public void SetMusicVolume(float volume)
         {
             MusicVolume = volume;
-            ApplyMusicVolume(volume);
+            ApplyMusicVolume();
             PlayerPrefs.SetFloat(MUSIC_KEY, volume);
             PlayerPrefs.Save();
         }
@@ -51,33 +58,80 @@ namespace BOO.Core
         public void SetSFXVolume(float volume)
         {
             SFXVolume = volume;
-            ApplySFXVolume(volume);
+            ApplySFXVolume();
             PlayerPrefs.SetFloat(SFX_KEY, volume);
             PlayerPrefs.Save();
         }
 
-        private void ApplyMusicVolume(float volume)
+        public void PlayMusic(AudioClip clip)
         {
-            if (musicSource != null)
-            {
-                musicSource.volume = volume;
-            }
+            if (clip == null || clip == currentMusic || musicSource == null) return;
+
+            currentMusic = clip;
+            if (musicSwap != null) StopCoroutine(musicSwap);
+            musicSwap = StartCoroutine(SwapMusic(clip));
         }
 
-        private void ApplySFXVolume(float volume)
+        public void StopMusic()
         {
-            if (sfxSource != null)
-            {
-                sfxSource.volume = volume;
-            }
+            if (currentMusic == null || musicSource == null) return;
+
+            currentMusic = null;
+            if (musicSwap != null) StopCoroutine(musicSwap);
+            musicSwap = StartCoroutine(SwapMusic(null));
         }
 
         public void PlaySFX(AudioClip clip)
         {
             if (sfxSource != null && clip != null)
-            {
                 sfxSource.PlayOneShot(clip);
+        }
+
+        private IEnumerator SwapMusic(AudioClip next)
+        {
+            if (musicSource.isPlaying) yield return FadeMusic(0f);
+
+            musicFade = 0f;
+            ApplyMusicVolume();
+            musicSource.clip = next;
+
+            if (next == null)
+            {
+                musicSource.Stop();
             }
+            else
+            {
+                musicSource.Play();
+                yield return FadeMusic(1f);
+            }
+
+            musicSwap = null;
+        }
+
+        private IEnumerator FadeMusic(float target)
+        {
+            float start = musicFade;
+            for (float t = 0f; t < musicFadeTime; t += Time.unscaledDeltaTime)
+            {
+                musicFade = Mathf.Lerp(start, target, t / musicFadeTime);
+                ApplyMusicVolume();
+                yield return null;
+            }
+
+            musicFade = target;
+            ApplyMusicVolume();
+        }
+
+        private void ApplyMusicVolume()
+        {
+            if (musicSource != null)
+                musicSource.volume = MusicVolume * musicFade;
+        }
+
+        private void ApplySFXVolume()
+        {
+            if (sfxSource != null)
+                sfxSource.volume = SFXVolume;
         }
     }
 }

@@ -20,6 +20,7 @@ namespace BOO.Core
 
         public bool IsPlaying { get; private set; }
         public bool HasChoices => story != null && story.currentChoices.Count > 0;
+        public bool IsSkipping { get; private set; }
 
         public event Action<string, string> LineShown;
         public event Action ChoicesShown;
@@ -122,6 +123,7 @@ namespace BOO.Core
             string lastText = null;
             bool stoppedOnOrder = false;
 
+            IsSkipping = true;
             while (story.canContinue)
             {
                 string text = story.Continue().Trim();
@@ -138,6 +140,7 @@ namespace BOO.Core
                     break;
                 }
             }
+            IsSkipping = false;
 
             if (!stoppedOnOrder && !HasChoices)
             {

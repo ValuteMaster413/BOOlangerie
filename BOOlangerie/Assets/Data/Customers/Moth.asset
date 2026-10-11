@@ -16,6 +16,10 @@ MonoBehaviour:
   displayName: Posh Moth Lady
   sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   monsterSprite: {fileID: 0}
+  theme: {fileID: 8300000, guid: 2af015d6aee04e24587f969d6ef007ae, type: 3}
+  enterSfx: {fileID: 0}
+  monsterSfx: {fileID: 0}
+  voiceSfx: {fileID: 8300000, guid: e5bc8b670a3b3e546891f0715a0362ed, type: 3}
   rounds:
   - accepted:
     - baseItem: {fileID: 11400000, guid: ab4ef8406d3e0534e94b90036311ab6e, type: 2}

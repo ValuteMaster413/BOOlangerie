@@ -16,6 +16,10 @@ MonoBehaviour:
   displayName: Cute Racoon-Dog!
   sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   monsterSprite: {fileID: 0}
+  theme: {fileID: 8300000, guid: 1e9c44b9563b9f94b9e2aaa72f9a1d52, type: 3}
+  enterSfx: {fileID: 0}
+  monsterSfx: {fileID: 0}
+  voiceSfx: {fileID: 8300000, guid: 0898ad82a89e31644983ef1a2ac86bce, type: 3}
   rounds:
   - accepted:
     - baseItem: {fileID: 11400000, guid: 9da319309acc76e4389f57decd7a6c30, type: 2}

@@ -16,6 +16,10 @@ MonoBehaviour:
   displayName: Pumpkin Head . . . Man?
   sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   monsterSprite: {fileID: 0}
+  theme: {fileID: 8300000, guid: 74ac126383a39d542895466a0b99c73b, type: 3}
+  enterSfx: {fileID: 0}
+  monsterSfx: {fileID: 0}
+  voiceSfx: {fileID: 8300000, guid: e3225c76e05d8234e999a612aab89943, type: 3}
   rounds:
   - accepted:
     - baseItem: {fileID: 11400000, guid: e08d692b072393a42ad1555235e0bbe8, type: 2}

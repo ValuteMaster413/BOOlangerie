@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2614456212345466663}
   - component: {fileID: 8384282660469874289}
+  - component: {fileID: 3238659812120171041}
   m_Layer: 5
   m_Name: MainMenuController
   m_TagString: Untagged
@@ -55,6 +56,19 @@ MonoBehaviour:
   settings: {fileID: 8366065763673776293}
   credits: {fileID: 2129630586664339986}
   targetSceneName: Bakery
+--- !u!114 &3238659812120171041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8104132195597737271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9b8705839fb0224da1cb7ba1610b774, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BOO.Core.SceneMusic
+  clip: {fileID: 8300000, guid: bbe727929fc823348bcca279f97f7e2d, type: 3}
 --- !u!1001 &2181622391160297932
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -84,6 +84,12 @@ namespace BOO.UI
 
         private void OnTag(string key, string value)
         {
+            if (key == "voice")
+            {
+                PlayVoice();
+                return;
+            }
+
             if (key != "anim") return;
 
             switch (value.ToLowerInvariant())
@@ -104,6 +110,13 @@ namespace BOO.UI
                     Debug.LogWarning($"[Customer] Unknown anim '{value}'.");
                     break;
             }
+        }
+
+        private void PlayVoice()
+        {
+            if (runner.IsSkipping || AudioManager.Instance == null) return;
+
+            AudioManager.Instance.PlaySFX(gameManager.CurrentCustomer.voiceSfx);
         }
 
         private IEnumerator SwapCustomer(CustomerData customer)

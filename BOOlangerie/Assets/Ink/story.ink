@@ -49,7 +49,7 @@ Rolling pin, knife, <i>bug spray??</i>
 Ah no time, no time, no time!
 S-Stay back! #speaker: Me
 I brace myself, ready to meet my end, my whole life flashing before my eyes.
-The lights are positively scrumptious in here my dear! Yes, very comforting indeed. Where ever did you purchase them? #speaker: Posh Moth Lady
+The lights are positively scrumptious in here my dear! Yes, very comforting indeed. Where ever did you purchase them? #speaker: Posh Moth Lady #voice
 Wait.
 What?
 I look up to see the lady moth blissfully standing in the shop's interior, huddled beneath the lights I put up earlier.
@@ -61,7 +61,7 @@ You would think so, right? But no, they were actually pretty cheap for the whole
 You know in case the other ones, like stop working or... something. #speaker: Me
 I shift awkwardly on my feet, my hands clenched white at the knuckles.
 What is even happening right now?
-Ah, a truly tasteful measure! #speaker: Posh Moth Lady
+Ah, a truly tasteful measure! #speaker: Posh Moth Lady #voice
 You cannot believe how hard it is to find establishments with good lighting these days, let alone open so late! #speaker: Posh Moth Lady
 These bitter autumn nights are cold as death, just dreadful for my delicate health! #speaker: Posh Moth Lady
 I-I feel faint as a lily. #speaker: Posh Moth Lady
@@ -91,7 +91,7 @@ Crap.
 I'm so sorry! I'll remake it right away! #speaker: Me
 Ah, but you see, I'm feeling rather <i>frigid</i> today. #speaker: Posh Moth Lady
 N-No please don't hurt- #speaker: Me
-<i>Light is a privilege darling!~</i> #speaker: Posh Moth Lady #anim: monster
+<i>Light is a privilege darling!~</i> #speaker: Posh Moth Lady #anim: monster #voice
 Hey! You know I just bought those! #speaker: Me
 Ah! This sucks sooo much! #speaker: Me
 -> DONE
@@ -105,7 +105,7 @@ Oh, enjoy is an understatement, how positively delicious! #speaker: Posh Moth La
 Ah, I can feel my body rejuvenating! I just might make it back home after all. #speaker: Posh Moth Lady
 I feel myself blush slightly at her praise and laugh awkwardly.
 I-I'm glad you're feeling better. #speaker: Me
-Au revoir dearie~ #speaker: Posh Moth Lady
+Au revoir dearie~ #speaker: Posh Moth Lady #voice
 -> DONE
 
 === pumpkin_r1 ===
@@ -123,7 +123,7 @@ Um, excuse me? #speaker: Me
 Three shrill voices escape from beneath the Pumpkin man's trench coat, arguing not so quietly with one another.
 Am I <i>sure</i> this isn't just some kids playing a trick?
 Uh... So would you maybe like to order something? #speaker: Me
-The voices go quiet for a moment, then one of them responds back.
+The voices go quiet for a moment, then one of them responds back. #voice
 Ok humany waiter, bring us the treats! #speaker: Pumpkin Head . . . Man?
 A second voice pipes up.
 Yes, bring us the treats! #speaker: Pumpkin Head . . . Man?
@@ -131,7 +131,7 @@ And finally, a third voice, <i>though much more polite than the first two,</i> q
 I-If you don't mind, that is. #speaker: Pumpkin Head . . . Man?
 I strain myself over the counter, looking into the Pumpkin man's hollow eyes for a glimpse of my three <i>very</i> mysterious customers, but all I see is darkness.
 And to whom do I owe the pleasure of serving? #speaker: Me
-It goes quiet again. They must be deliberating.
+It goes quiet again. They must be deliberating. #voice
 Err... None of your business! You are just a <i>lowly</i> humany waiter. Now serve us post-haste! #speaker: Pumpkin Head . . . Man?
 The other voice chimes in agreement.
 Post-haste! #speaker: Pumpkin Head . . . Man?
@@ -174,7 +174,7 @@ I-I think I caught all that.
 And... Here is your treat! Don't thank me all at once! #speaker: Me
 Smirking lightly, I place the order on the counter.
 Let's see what they think about the skills of a true master baker.
-Why aren't they saying anything?
+Why aren't they saying anything? #voice
 Um guys, I said your food's done. Take it and get out of here. I don't have all night kiddos. #speaker: Me
 I'm starting to have a bad feeling about this.
 This isn't what we asked for! #speaker: Pumpkin Head . . . Man?
@@ -196,7 +196,7 @@ No mercy. #speaker: Me
 
 === pumpkin_r1_good ===
 And... Here you are! One fresh, delicious treat to warm your pumpkiny tails. #speaker: Me
-Oh, my, this is good! #speaker: Pumpkin Head . . . Man?
+Oh, my, this is good! #speaker: Pumpkin Head . . . Man? #voice
 Yes, good! #speaker: Pumpkin Head . . . Man?
 I-It is very, very yummy! #speaker: Pumpkin Head . . . Man?
 I smirk slightly and cross my arms.
@@ -299,7 +299,7 @@ It wouldn't hurt to feed just one more little critter, I mean... just look at th
 Ok. On the house. #speaker: Cute Racoon-Dog!
 I beam as I grab my notepad and pen. Somehow, going home doesn't seem so important now.
 So, what can I get you? #speaker: Me
-I crave something I can easily hold in my hand, filled with the sweetness of nature. #speaker: Cute Racoon-Dog! #order
+I crave something I can easily hold in my hand, filled with the sweetness of nature. #speaker: Cute Racoon-Dog! #order #voice
 Foraging along the trees in autumn, I like to pick these off the ground. #speaker: Cute Racoon-Dog! #order
 So hungry...Please hurry. #speaker: Cute Racoon-Dog!
 Ah, yes right away! #speaker: Me
@@ -311,7 +311,7 @@ I feel myself getting nervous as I return with the food.
 This is for you! Please let me know how it tastes! #speaker: Me
 I hope they don't hate it! I couldn't bear it if they got mad at me...
 Oh who am I kidding, they look like they wouldn't harm a-
-This is rotten stupid mortal. #speaker: Cute Racoon-Dog!
+This is rotten stupid mortal. #speaker: Cute Racoon-Dog! #voice
 ...
 Haha sorry I must have dozed for a second, can you repeat that. #speaker: Me
 Rotten. Rotten and repulsive. I wouldn't feed this to... Well, anyone. #speaker: Cute Racoon-Dog!
@@ -329,7 +329,7 @@ After a few moments they finish. I notice crumbs and spare bits of food caught i
 So what did you think? #speaker: Me
 Hm... #speaker: Cute Racoon-Dog!
 The creature burps loudly.
-You bake well. I will be back. I will also tell others about you and expand your small bakery to an empire. #speaker: Cute Racoon-Dog!
+You bake well. I will be back. I will also tell others about you and expand your small bakery to an empire. #speaker: Cute Racoon-Dog! #voice
 Empire??
 W-Wow! Um, you don't have to do all that! #speaker: Me
 On the house. #speaker: Cute Racoon-Dog!

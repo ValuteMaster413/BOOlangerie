@@ -13,6 +13,7 @@ namespace BOO.Data
         public AudioClip theme;
         public AudioClip enterSfx;
         public AudioClip monsterSfx;
+        public AudioClip voiceSfx;
         public OrderRound[] rounds;
     }
 }

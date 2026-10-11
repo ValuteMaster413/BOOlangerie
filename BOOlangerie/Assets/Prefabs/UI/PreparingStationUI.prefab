@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 2784895952635231453}
   - component: {fileID: 5029858728806774014}
   m_Layer: 5
-  m_Name: PrepearingStationUI
+  m_Name: PreparingStationUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

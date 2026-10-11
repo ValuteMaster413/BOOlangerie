@@ -150,6 +150,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3262549792164957358, guid: a198c203e0290dc4fa5009d9173e3a69, type: 3}
   m_PrefabInstance: {fileID: 9013716530562033943}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &147840412 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3710885104731115501, guid: 205c97060b49b9345b43f7a9ace5bf8c, type: 3}
+  m_PrefabInstance: {fileID: 1852801000}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &164081389 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6629395301943377345, guid: 205c97060b49b9345b43f7a9ace5bf8c, type: 3}
@@ -927,7 +932,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1850748302024959765, guid: 205c97060b49b9345b43f7a9ace5bf8c, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2834814560743205430, guid: 205c97060b49b9345b43f7a9ace5bf8c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1073,6 +1078,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6010268295127717343, guid: 205c97060b49b9345b43f7a9ace5bf8c, type: 3}
+      propertyPath: pauseBackground
+      value: 
+      objectReference: {fileID: 147840412}
     - target: {fileID: 6224753228444357838, guid: 205c97060b49b9345b43f7a9ace5bf8c, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -1099,7 +1108,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6525092090635833839, guid: 205c97060b49b9345b43f7a9ace5bf8c, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6974596091147772619, guid: 205c97060b49b9345b43f7a9ace5bf8c, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1279,7 +1288,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5693785111856661863, guid: 73a2b81c4d4566c47a7c2ce8e118b902, type: 3}
       propertyPath: m_Name
-      value: PrepearingStationUI
+      value: PreparingStationUI
       objectReference: {fileID: 0}
     - target: {fileID: 5693785111856661863, guid: 73a2b81c4d4566c47a7c2ce8e118b902, type: 3}
       propertyPath: m_IsActive

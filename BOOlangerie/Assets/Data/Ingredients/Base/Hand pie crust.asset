@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BOO.Data.IngredientData
   id: hand_pie_crust
   displayName: Hand pie crust
-  icon: {fileID: 0}
+  icon: {fileID: -4874282420825047210, guid: f4cc4b5a40cda5849af23fd4605f7930, type: 3}
   description: A portable pie for all your pie carrying needs.
   kind: 0
   flavor: 0

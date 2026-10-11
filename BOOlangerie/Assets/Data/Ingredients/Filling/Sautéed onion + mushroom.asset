@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BOO.Data.IngredientData
   id: sauteed_onion_mushroom
   displayName: "Saut\xE9ed onion + mushroom"
-  icon: {fileID: 0}
+  icon: {fileID: 8002504783926389417, guid: 5ea7cb0b515b2544ab59178335c89420, type: 3}
   description: Slow cooked to perfection, served with a pinch of parsley.
   kind: 1
   flavor: 3

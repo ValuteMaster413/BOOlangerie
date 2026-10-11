@@ -7,8 +7,6 @@ public class CurrentRecipe
     public IngredientData selectedBase;
     public IngredientData selectedFilling;
     public IngredientData selectedTopping;
-
-    // Для подачи достаточно хотя бы базы!
     public bool IsValid()
     {
         return selectedBase != null;

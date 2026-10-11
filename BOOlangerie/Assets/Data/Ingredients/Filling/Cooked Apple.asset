@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BOO.Data.IngredientData
   id: cooked_apple
   displayName: Cooked apple
-  icon: {fileID: 0}
+  icon: {fileID: -3555517074550806074, guid: 108f279d37d833340a294f75b34a0733, type: 3}
   description: Sweet and very good for you!
   kind: 1
   flavor: 4

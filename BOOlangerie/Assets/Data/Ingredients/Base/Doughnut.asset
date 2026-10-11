@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BOO.Data.IngredientData
   id: doughnut
   displayName: Doughnut
-  icon: {fileID: 0}
+  icon: {fileID: -8576997681220381384, guid: dcaeb40d4ea19bb4f9ef3b167cb26e3c, type: 3}
   description: A classic! Crispy and golden on the outside, soft and fluffy on the
     inside.
   kind: 0

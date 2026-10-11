@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BOO.Data.IngredientData
   id: sweet_potato_puree
   displayName: Sweet potato puree
-  icon: {fileID: 0}
+  icon: {fileID: 335706124483232548, guid: 91a461dfd7b2fce46bf39544e38e6f0c, type: 3}
   description: Pumpkins better, and more nutritious, brother.
   kind: 1
   flavor: 5

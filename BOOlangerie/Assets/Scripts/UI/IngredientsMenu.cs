@@ -22,6 +22,9 @@ public class IngredientsMenuUI : MonoBehaviour
     [SerializeField] private Button resetButton;
     [SerializeField] private Button serveButton;
     
+    [Header("Visualizer")]
+    [SerializeField] private DishVisualizer dishVisualizer;
+    
     [Header("Description Panel")]
     [SerializeField] private TextMeshProUGUI descriptionText;
 
@@ -101,6 +104,11 @@ public class IngredientsMenuUI : MonoBehaviour
                 Debug.Log($"Topping selected: {ingredient.displayName}");
                 break;
         }
+        
+        if (dishVisualizer != null)
+        {
+            dishVisualizer.DisplayDish(currentRecipe);
+        }
     }
 
     private void ShowDescription(IngredientData ingredient)
@@ -115,6 +123,11 @@ public class IngredientsMenuUI : MonoBehaviour
     {
         currentRecipe.Reset();
         Debug.Log("Recipe reset!");
+        
+        if (dishVisualizer != null)
+        {
+            dishVisualizer.ClearVisuals();
+        }
     }
 
     private void ServeDish()
@@ -125,6 +138,11 @@ public class IngredientsMenuUI : MonoBehaviour
             return;
         }
 
+        Order order = new Order();
+        order.baseItem = currentRecipe.selectedBase;
+        order.filling = currentRecipe.selectedFilling;
+        order.topping = currentRecipe.selectedTopping;
+        
         Debug.Log($"Serving dish -> Base: {currentRecipe.selectedBase?.displayName}, " +
                   $"Filling: {currentRecipe.selectedFilling?.displayName ?? "None"}, " +
                   $"Topping: {currentRecipe.selectedTopping?.displayName ?? "None"}");
@@ -132,5 +150,7 @@ public class IngredientsMenuUI : MonoBehaviour
         
         currentRecipe.Reset();
         FindObjectOfType<BakeryViewController>()?.ShowCounterStation();
+        
+        GameManager.Instance.Serve(order);
     }
 }

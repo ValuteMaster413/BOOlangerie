@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BOO.Data.IngredientData
   id: sprinkles
   displayName: Sprinkles
-  icon: {fileID: 0}
+  icon: {fileID: -6647566057019364579, guid: 161c2d5c64e8c614b8a9736e7e325792, type: 3}
   description: "They\u2019re Halloween themed!"
   kind: 2
   flavor: 7

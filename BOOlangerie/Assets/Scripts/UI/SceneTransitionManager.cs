@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class SceneTransitionManager : MonoBehaviour
@@ -12,32 +11,32 @@ public class SceneTransitionManager : MonoBehaviour
 
     [Header("Transition Settings")]
     [SerializeField] private float fadeDuration = 0.5f;
+    [SerializeField] private bool fadeInOnStart;
 
-    private bool isTransitioning = false;
+    private const float MaxStep = 0.05f;
+
+    private bool isTransitioning;
 
     private void Awake()
     {
         if (Instance != null && Instance != this)
         {
+            gameObject.SetActive(false);
             Destroy(gameObject);
             return;
         }
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
-        
-        if (fadeCanvasGroup != null)
-        {
-            fadeCanvasGroup.alpha = 1f;
-            fadeCanvasGroup.blocksRaycasts = false;
-        }
+
+        SetFade(fadeInOnStart ? 1f : 0f, false);
     }
 
     private void Start()
     {
-        StartCoroutine(FadeIn());
+        if (Instance == this && fadeInOnStart) StartCoroutine(FadeIn());
     }
-    
+
     public void LoadScene(string sceneName)
     {
         if (isTransitioning) return;
@@ -54,57 +53,55 @@ public class SceneTransitionManager : MonoBehaviour
     private IEnumerator TransitionRoutine(string sceneName)
     {
         isTransitioning = true;
-        
-        yield return StartCoroutine(FadeOut());
 
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
-        asyncLoad.allowSceneActivation = false;
-        
-        while (asyncLoad.progress < 0.9f)
+        yield return FadeOut();
+
+        AsyncOperation load = SceneManager.LoadSceneAsync(sceneName);
+        if (load != null)
         {
+            while (!load.isDone) yield return null;
             yield return null;
         }
-        
-        asyncLoad.allowSceneActivation = true;
-        
-        yield return null;
-        
-        yield return StartCoroutine(FadeIn());
+
+        yield return FadeIn();
 
         isTransitioning = false;
     }
 
-    private IEnumerator FadeOut()
+    public IEnumerator FadeOut()
     {
-        if (fadeCanvasGroup == null) yield break;
-
-        fadeCanvasGroup.blocksRaycasts = true;
-        float timer = 0f;
-
-        while (timer < fadeDuration)
-        {
-            timer += Time.unscaledDeltaTime;
-            fadeCanvasGroup.alpha = Mathf.Clamp01(timer / fadeDuration);
-            yield return null;
-        }
-
-        fadeCanvasGroup.alpha = 1f;
+        yield return Fade(1f);
     }
 
-    private IEnumerator FadeIn()
+    public IEnumerator FadeIn()
+    {
+        yield return Fade(0f);
+    }
+
+    private IEnumerator Fade(float target)
     {
         if (fadeCanvasGroup == null) yield break;
 
-        float timer = 0f;
-
-        while (timer < fadeDuration)
+        float start = fadeCanvasGroup.alpha;
+        if (!Mathf.Approximately(start, target))
         {
-            timer += Time.unscaledDeltaTime;
-            fadeCanvasGroup.alpha = Mathf.Clamp01(1f - (timer / fadeDuration));
-            yield return null;
+            fadeCanvasGroup.blocksRaycasts = true;
+
+            for (float t = 0f; t < fadeDuration; t += Mathf.Min(Time.unscaledDeltaTime, MaxStep))
+            {
+                fadeCanvasGroup.alpha = Mathf.Lerp(start, target, t / fadeDuration);
+                yield return null;
+            }
         }
 
-        fadeCanvasGroup.alpha = 0f;
-        fadeCanvasGroup.blocksRaycasts = false;
+        SetFade(target, target > 0f);
+    }
+
+    private void SetFade(float alpha, bool blockClicks)
+    {
+        if (fadeCanvasGroup == null) return;
+
+        fadeCanvasGroup.alpha = alpha;
+        fadeCanvasGroup.blocksRaycasts = blockClicks;
     }
 }

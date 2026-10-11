@@ -187,9 +187,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5747284562368517701}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!1 &5882683772477129027
 GameObject:
@@ -238,3 +238,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SceneTransitionManager
   fadeCanvasGroup: {fileID: 1828626414320320763}
   fadeDuration: 0.5
+  fadeInOnStart: 0

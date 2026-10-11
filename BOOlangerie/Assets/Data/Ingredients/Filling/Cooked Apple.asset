@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16bec1f354cc7e54292aa9aec52e35eb, type: 3}
-  m_Name: Cooked Apple
+  m_Name: Cooked apple
   m_EditorClassIdentifier: Assembly-CSharp::BOO.Data.IngredientData
-  id: cooked apple
-  displayName: Cooked Apple
+  id: cooked_apple
+  displayName: Cooked apple
   icon: {fileID: 0}
   description: Sweet and very good for you!
   kind: 1

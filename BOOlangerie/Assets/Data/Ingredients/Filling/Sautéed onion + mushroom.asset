@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16bec1f354cc7e54292aa9aec52e35eb, type: 3}
-  m_Name: Sprinkles
+  m_Name: "Saut\xE9ed onion + mushroom"
   m_EditorClassIdentifier: Assembly-CSharp::BOO.Data.IngredientData
-  id: sprinkles
-  displayName: Sprinkles
+  id: sauteed_onion_mushroom
+  displayName: "Saut\xE9ed onion + mushroom"
   icon: {fileID: 0}
-  description: They're Halloween themed!
-  kind: 2
-  flavor: 7
+  description: Slow cooked to perfection, served with a pinch of parsley.
+  kind: 1
+  flavor: 3

@@ -151,7 +151,7 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   inkFile: {fileID: 6231892579173505729, guid: 4eca109c17ecb33449ba6445b49025dc, type: 3}
   introKnot: game_end
-  playIntroOnStart: 0
+  playIntroOnStart: 1
 --- !u!4 &239616142
 Transform:
   m_ObjectHideFlags: 0

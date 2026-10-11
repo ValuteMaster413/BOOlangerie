@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16bec1f354cc7e54292aa9aec52e35eb, type: 3}
-  m_Name: Sauteed Onion and Mushoom
+  m_Name: Walnuts
   m_EditorClassIdentifier: Assembly-CSharp::BOO.Data.IngredientData
-  id: sauteed onion and mushoom
-  displayName: Sauteed Onion and Mushoom
+  id: walnuts
+  displayName: Walnuts
   icon: {fileID: 0}
-  description: Slow cooked to perfection, served with a pinch of parsley
-  kind: 1
-  flavor: 3
+  description: "If a walnut falls in a forest and no one is around to hear it\u2026"
+  kind: 2
+  flavor: 8

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16bec1f354cc7e54292aa9aec52e35eb, type: 3}
   m_Name: Hand pie crust
   m_EditorClassIdentifier: Assembly-CSharp::BOO.Data.IngredientData
-  id: hand pie crust
+  id: hand_pie_crust
   displayName: Hand pie crust
   icon: {fileID: 0}
-  description: 'A portable pie for all your pie carrying needs. '
+  description: A portable pie for all your pie carrying needs.
   kind: 0
   flavor: 0

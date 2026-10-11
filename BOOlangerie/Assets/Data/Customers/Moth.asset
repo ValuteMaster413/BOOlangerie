@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: Moth
   m_EditorClassIdentifier: Assembly-CSharp::BOO.Data.CustomerData
   id: moth
-  displayName: Moth Lady
+  displayName: Posh Moth Lady
   sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  orders:
-  - baseItem: {fileID: 11400000, guid: 32150bc8295dffe46a0a80bef5b581fd, type: 2}
-    toppings:
-    - {fileID: 11400000, guid: 2d8072e0bccf78f42937aa201810d767, type: 2}
+  monsterSprite: {fileID: 0}
+  rounds:
+  - accepted:
+    - baseItem: {fileID: 11400000, guid: ab4ef8406d3e0534e94b90036311ab6e, type: 2}
+      filling: {fileID: 11400000, guid: db4e6334a1cc5e64cbc563ad7822de2d, type: 2}
+      topping: {fileID: 11400000, guid: e42da2a6499fdb147948be8dec89039d, type: 2}

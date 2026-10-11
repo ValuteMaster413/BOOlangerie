@@ -629,6 +629,7 @@ MonoBehaviour:
   customers:
   - {fileID: 11400000, guid: a57bae7cc44a3bf4fac4214bf1d5a8b9, type: 2}
   - {fileID: 11400000, guid: ac82c45850a45c24388a955774ee07dc, type: 2}
+  - {fileID: 11400000, guid: 35235ecb5582d9f4b92d97d76cf93f23, type: 2}
   endingScene: Ending
 --- !u!4 &1339251580
 Transform:

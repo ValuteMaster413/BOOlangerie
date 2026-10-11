@@ -13,9 +13,17 @@ MonoBehaviour:
   m_Name: Pumpkin
   m_EditorClassIdentifier: Assembly-CSharp::BOO.Data.CustomerData
   id: pumpkin
-  displayName: Pumpkin Man
+  displayName: Pumpkin Head . . . Man?
   sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  orders:
-  - baseItem: {fileID: 11400000, guid: f3278417a15b5b341be5c4f15573f1be, type: 2}
-    toppings:
-    - {fileID: 11400000, guid: 7540d1a8ef2dc3d4780926018a54db82, type: 2}
+  monsterSprite: {fileID: 0}
+  rounds:
+  - accepted:
+    - baseItem: {fileID: 11400000, guid: e08d692b072393a42ad1555235e0bbe8, type: 2}
+      filling: {fileID: 11400000, guid: b7b608aa4e3311c4385ad478e35080d0, type: 2}
+      topping: {fileID: 11400000, guid: 024371c6fc0162347a2a50107c6b5fab, type: 2}
+    - baseItem: {fileID: 11400000, guid: e08d692b072393a42ad1555235e0bbe8, type: 2}
+      filling: {fileID: 11400000, guid: e28482a80fc0f5746863b0d8a7674fa4, type: 2}
+      topping: {fileID: 11400000, guid: 024371c6fc0162347a2a50107c6b5fab, type: 2}
+    - baseItem: {fileID: 11400000, guid: e08d692b072393a42ad1555235e0bbe8, type: 2}
+      filling: {fileID: 11400000, guid: db4e6334a1cc5e64cbc563ad7822de2d, type: 2}
+      topping: {fileID: 11400000, guid: e42da2a6499fdb147948be8dec89039d, type: 2}

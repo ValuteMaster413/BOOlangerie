@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16bec1f354cc7e54292aa9aec52e35eb, type: 3}
-  m_Name: Wallnuts
+  m_Name: Sprinkles
   m_EditorClassIdentifier: Assembly-CSharp::BOO.Data.IngredientData
-  id: wallnuts
-  displayName: Wallnuts
+  id: sprinkles
+  displayName: Sprinkles
   icon: {fileID: 0}
-  description: If a wallnut falls in a forest and no one around to hear it...
+  description: "They\u2019re Halloween themed!"
   kind: 2
-  flavor: 8
+  flavor: 7

@@ -21,12 +21,12 @@ namespace BOO.Core
         public string OrderKnot => $"{CurrentCustomer.id}_r{roundIndex + 1}";
         public string ResultKnot(OrderResult result) => $"{OrderKnot}_{result.ToString().ToLowerInvariant()}";
 
-        public Order CurrentOrder
+        public OrderRound CurrentRound
         {
             get
             {
-                Order[] orders = CurrentCustomer.orders;
-                return roundIndex < orders.Length ? orders[roundIndex] : null;
+                OrderRound[] rounds = CurrentCustomer.rounds;
+                return roundIndex < rounds.Length ? rounds[roundIndex] : null;
             }
         }
 
@@ -48,8 +48,14 @@ namespace BOO.Core
         {
             if (State != GameState.Prep || Keyboard.current == null) return;
 
-            if (Keyboard.current.gKey.wasPressedThisFrame) Serve(CurrentOrder);
-            else if (Keyboard.current.bKey.wasPressedThisFrame) Serve(null);
+            if (Keyboard.current.gKey.wasPressedThisFrame) Serve(FirstAcceptedOrder());   // a correct order
+            else if (Keyboard.current.bKey.wasPressedThisFrame) Serve(null);              // a wrong order
+        }
+
+        private Order FirstAcceptedOrder()
+        {
+            OrderRound round = CurrentRound;
+            return round != null && round.accepted.Length > 0 ? round.accepted[0] : null;
         }
 
         public void DialogueFinished()
@@ -72,7 +78,7 @@ namespace BOO.Core
         {
             if (State != GameState.Prep) return;
 
-            OrderResult result = OrderEvaluator.Evaluate(CurrentOrder, made);
+            OrderResult result = OrderEvaluator.Evaluate(CurrentRound, made);
             Debug.Log($"Served {CurrentCustomer.id}: {result}");
             OrderServed?.Invoke(result);
             SetState(GameState.Reaction);
@@ -81,7 +87,7 @@ namespace BOO.Core
         private void NextRound()
         {
             roundIndex++;
-            if (roundIndex >= CurrentCustomer.orders.Length)
+            if (roundIndex >= CurrentCustomer.rounds.Length)
             {
                 roundIndex = 0;
                 customerIndex++;

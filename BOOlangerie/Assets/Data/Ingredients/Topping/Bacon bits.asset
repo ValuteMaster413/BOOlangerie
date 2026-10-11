@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16bec1f354cc7e54292aa9aec52e35eb, type: 3}
   m_Name: Bacon bits
   m_EditorClassIdentifier: Assembly-CSharp::BOO.Data.IngredientData
-  id: bacon bits
+  id: bacon_bits
   displayName: Bacon bits
   icon: {fileID: 0}
-  description: 
+  description: Crispy, salty, goodness.
   kind: 2
   flavor: 6

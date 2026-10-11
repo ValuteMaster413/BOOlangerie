@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using BOO.Data;
 
 namespace BOO.Core
@@ -8,6 +7,18 @@ namespace BOO.Core
     public class Order
     {
         public IngredientData baseItem;
-        public List<IngredientData> toppings = new();
+        public IngredientData filling;
+        public IngredientData topping;
+
+        public bool Matches(Order other)
+        {
+            return other != null && baseItem == other.baseItem && filling == other.filling && topping == other.topping;
+        }
+    }
+
+    [Serializable]
+    public class OrderRound
+    {
+        public Order[] accepted;
     }
 }

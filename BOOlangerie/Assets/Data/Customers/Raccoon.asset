@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de530354d1c6d21499e6cc56411d2950, type: 3}
+  m_Name: Raccoon
+  m_EditorClassIdentifier: Assembly-CSharp::BOO.Data.CustomerData
+  id: bakedanuki
+  displayName: Cute Racoon-Dog!
+  sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  monsterSprite: {fileID: 0}
+  rounds:
+  - accepted:
+    - baseItem: {fileID: 11400000, guid: 9da319309acc76e4389f57decd7a6c30, type: 2}
+      filling: {fileID: 11400000, guid: e28482a80fc0f5746863b0d8a7674fa4, type: 2}
+      topping: {fileID: 11400000, guid: f41467e7aaf713c42b3c8482ef82cad3, type: 2}
+    - baseItem: {fileID: 11400000, guid: 9da319309acc76e4389f57decd7a6c30, type: 2}
+      filling: {fileID: 11400000, guid: b7b608aa4e3311c4385ad478e35080d0, type: 2}
+      topping: {fileID: 11400000, guid: f41467e7aaf713c42b3c8482ef82cad3, type: 2}

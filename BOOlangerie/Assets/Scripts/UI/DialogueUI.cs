@@ -18,6 +18,9 @@ namespace BOO.UI
         [SerializeField] private Button advanceButton;
         [SerializeField] private Button skipButton;
         [SerializeField] private Button autoButton;
+        [SerializeField] private Button settingsButton;
+        [SerializeField] private SettingsUI settings;
+        [SerializeField] private GameObject choiceOverlay;
         [SerializeField] private Transform choiceContainer;
         [SerializeField] private Button choiceButtonPrefab;
         [SerializeField] private AudioClip advanceSfx;
@@ -29,18 +32,23 @@ namespace BOO.UI
         [Header("Auto")]
         [SerializeField] private float autoDelay = 1.2f;
         [SerializeField] private float autoDelayPerCharacter = 0.03f;
-        [SerializeField] private Color autoOnColor = new Color(1f, 0.85f, 0.4f);
 
         private static bool autoOn;
 
         private Coroutine typing;
         private Coroutine autoWait;
 
+        private bool SettingsOpen => settings != null && settings.gameObject.activeSelf;
+
         private void Awake()
         {
             advanceButton.onClick.AddListener(OnAdvanceClicked);
             if (skipButton != null) skipButton.onClick.AddListener(OnSkipClicked);
             if (autoButton != null) autoButton.onClick.AddListener(OnAutoClicked);
+            if (settingsButton != null) settingsButton.onClick.AddListener(OnSettingsClicked);
+
+            if (settings != null) settings.gameObject.SetActive(false);
+            if (choiceOverlay != null) choiceOverlay.SetActive(false);
 
             RefreshAutoButton();
             panel.SetActive(false);
@@ -51,6 +59,7 @@ namespace BOO.UI
             runner.LineShown += ShowLine;
             runner.ChoicesShown += ShowChoices;
             runner.Finished += Hide;
+            if (settings != null) settings.BackClicked += CloseSettings;
         }
 
         private void OnDisable()
@@ -58,6 +67,7 @@ namespace BOO.UI
             runner.LineShown -= ShowLine;
             runner.ChoicesShown -= ShowChoices;
             runner.Finished -= Hide;
+            if (settings != null) settings.BackClicked -= CloseSettings;
         }
 
         private void ShowLine(string speaker, string text)
@@ -113,7 +123,7 @@ namespace BOO.UI
 
         private void OnAdvanceClicked()
         {
-            if (PauseMenuUI.IsPaused) return;
+            if (PauseMenuUI.IsPaused || SettingsOpen) return;
 
             if (CompleteLine()) return;
             if (runner.HasChoices) return;
@@ -125,7 +135,7 @@ namespace BOO.UI
 
         private void OnSkipClicked()
         {
-            if (PauseMenuUI.IsPaused) return;
+            if (PauseMenuUI.IsPaused || SettingsOpen) return;
 
             StopAutoWait();
             CompleteLine();
@@ -146,13 +156,30 @@ namespace BOO.UI
 
         private void RefreshAutoButton()
         {
-            if (autoButton != null) autoButton.image.color = autoOn ? autoOnColor : Color.white;
+            if (autoButton == null) return;
+
+            TMP_Text label = autoButton.GetComponentInChildren<TMP_Text>(true);
+            if (label != null) label.fontStyle = autoOn ? FontStyles.Underline : FontStyles.Normal;
+        }
+
+        private void OnSettingsClicked()
+        {
+            if (PauseMenuUI.IsPaused || settings == null) return;
+
+            StopAutoWait();
+            settings.gameObject.SetActive(true);
+        }
+
+        private void CloseSettings()
+        {
+            settings.gameObject.SetActive(false);
+            if (typing == null) StartAutoWait();
         }
 
         private void StartAutoWait()
         {
             StopAutoWait();
-            if (!autoOn || !panel.activeSelf || !runner.IsPlaying || runner.HasChoices) return;
+            if (!autoOn || SettingsOpen || !panel.activeSelf || !runner.IsPlaying || runner.HasChoices) return;
 
             autoWait = StartCoroutine(AutoAdvance());
         }
@@ -175,6 +202,8 @@ namespace BOO.UI
         private void ShowChoices()
         {
             ClearChoices();
+            if (choiceOverlay != null) choiceOverlay.SetActive(true);
+
             List<string> choices = runner.GetChoices();
 
             for (int i = 0; i < choices.Count; i++)
@@ -201,6 +230,7 @@ namespace BOO.UI
         private void ClearChoices()
         {
             foreach (Transform child in choiceContainer) Destroy(child.gameObject);
+            if (choiceOverlay != null) choiceOverlay.SetActive(false);
         }
 
         private void Hide()

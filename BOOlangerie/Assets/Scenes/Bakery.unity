@@ -461,8 +461,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BOO.Core.DialogueRunner
   gameManager: {fileID: 1339251579}
-  inkFile: {fileID: 6231892579173505729, guid: fa054bff099626c4aa9259abc8a64c62, type: 3}
-  introKnot: Intro
+  inkFile: {fileID: 6231892579173505729, guid: 4eca109c17ecb33449ba6445b49025dc, type: 3}
+  introKnot: game_intro
+  playIntroOnStart: 0
 --- !u!4 &1123980150
 Transform:
   m_ObjectHideFlags: 0

@@ -1463,6 +1463,7 @@ MonoBehaviour:
   baseImage: {fileID: 6654120840061956414}
   fillingImage: {fileID: 5033855744621686139}
   toppingImage: {fileID: 103812768187724997}
+  dishPosition: {x: -36, y: 72}
 --- !u!1 &2154403341041821914
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ namespace BOO.Core
         [SerializeField] private GameManager gameManager; // only assign in Bakery
         [SerializeField] private InkFile inkFile;
         [SerializeField] private string introKnot = "intro";
+        [SerializeField] private string endingKnot = "game_end";
         [SerializeField] private bool playIntroOnStart;
 
         private Story story;
@@ -78,6 +79,9 @@ namespace BOO.Core
                     break;
                 case GameState.Reaction:
                     Play(gameManager.ResultKnot(lastResult));
+                    break;
+                case GameState.Ending:
+                    Play(endingKnot);
                     break;
             }
         }

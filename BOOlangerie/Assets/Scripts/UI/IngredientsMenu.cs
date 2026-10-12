@@ -310,7 +310,7 @@ public class IngredientsMenuUI : MonoBehaviour
 
 
         currentRecipe.Reset();
-        FindObjectOfType<BakeryViewController>()?.ShowCounterStation();
+        FindAnyObjectByType<BakeryViewController>()?.ShowCounterStation();
 
         GameManager.Instance.Serve(order);
     }

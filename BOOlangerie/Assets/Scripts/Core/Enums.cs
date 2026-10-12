@@ -1,6 +1,6 @@
 namespace BOO.Core
 {
-    public enum GameState { Intro, Ordering, Prep, Reaction }
+    public enum GameState { Intro, Ordering, Prep, Reaction, Ending }
 
     public enum OrderResult { Good, Bad }
 

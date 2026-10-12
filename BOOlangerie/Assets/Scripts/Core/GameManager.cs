@@ -11,13 +11,13 @@ namespace BOO.Core
         public static GameManager Instance { get; private set; }
 
         [SerializeField] private CustomerData[] customers;
-        [SerializeField] private string endingScene = "Ending";
+        [SerializeField] private string menuScene = "MainMenu";
 
         private int customerIndex;
         private int roundIndex;
 
         public GameState State { get; private set; }
-        public CustomerData CurrentCustomer => customers[customerIndex];
+        public CustomerData CurrentCustomer => customerIndex < customers.Length ? customers[customerIndex] : null;
         public string OrderKnot => $"{CurrentCustomer.id}_r{roundIndex + 1}";
         public string ResultKnot(OrderResult result) => $"{OrderKnot}_{result.ToString().ToLowerInvariant()}";
 
@@ -71,6 +71,9 @@ namespace BOO.Core
                 case GameState.Reaction:
                     NextRound();
                     break;
+                case GameState.Ending:
+                    LoadMenu();
+                    break;
             }
         }
 
@@ -95,12 +98,17 @@ namespace BOO.Core
 
             if (customerIndex >= customers.Length)
             {
-                if (SceneTransitionManager.Instance != null) SceneTransitionManager.Instance.LoadScene(endingScene);
-                else SceneManager.LoadScene(endingScene);
+                SetState(GameState.Ending);
                 return;
             }
 
             SetState(GameState.Ordering);
+        }
+
+        private void LoadMenu()
+        {
+            if (SceneTransitionManager.Instance != null) SceneTransitionManager.Instance.LoadScene(menuScene);
+            else SceneManager.LoadScene(menuScene);
         }
 
         private void SetState(GameState next)

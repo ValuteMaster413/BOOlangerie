@@ -21,6 +21,16 @@ namespace BOO.UI
         [SerializeField] private GameObject[] lightsBroken;
         [SerializeField] private GameObject ambientLight;
         [SerializeField] private GameObject fairyLight;
+        [SerializeField] private Image sky;
+
+        [Header("Night effects")]
+        [SerializeField] private Image[] jarLayers;
+        [SerializeField] private Sprite jarGoneSprite;
+
+        [Header("Ending")]
+        [SerializeField] private bool dawnAtEnding = true;
+        [SerializeField] private Color dawnSkyColor = new Color(0.671f, 0.494f, 0.365f);
+        [SerializeField] private float dawnSeconds = 3f;
 
         [Header("Tuning")]
         [SerializeField] private float shiverPixels = 2f;
@@ -54,6 +64,9 @@ namespace BOO.UI
 
             if (ambientLight == null) ambientLight = FindByName(lightsOn, "AmbientLight");
             if (fairyLight == null) fairyLight = FindSibling(darkness.transform, "FairyFire");
+
+            GameObject skyObject = sky == null ? FindSibling(darkness.transform, "NightSky") : null;
+            if (skyObject != null) sky = skyObject.GetComponent<Image>();
 
             SetAlpha(body, 0f);
             monster.enabled = false;
@@ -92,6 +105,14 @@ namespace BOO.UI
                 return;
             }
 
+            if (state == GameState.Ending)
+            {
+                SetWarm(false);
+                if (visible) Exit();
+                if (dawnAtEnding && sky != null) StartCoroutine(Dawn());
+                return;
+            }
+
             if (state == GameState.Prep) Enter();
         }
 
@@ -119,7 +140,33 @@ namespace BOO.UI
                 case "anim":
                     PlayAnimCue(value.ToLowerInvariant());
                     break;
+                case "jar":
+                    TakeJar();
+                    break;
             }
+        }
+
+        private void TakeJar()
+        {
+            if (jarGoneSprite == null || jarLayers == null) return;
+
+            foreach (Image layer in jarLayers)
+            {
+                if (layer != null) layer.sprite = jarGoneSprite;
+            }
+        }
+
+        private IEnumerator Dawn()
+        {
+            Color night = sky.color;
+
+            for (float t = 0f; t < dawnSeconds; t += Time.deltaTime)
+            {
+                sky.color = Color.Lerp(night, dawnSkyColor, t / dawnSeconds);
+                yield return null;
+            }
+
+            sky.color = dawnSkyColor;
         }
 
         private void PlayAnimCue(string cue)
@@ -156,22 +203,25 @@ namespace BOO.UI
         {
             if (AudioManager.Instance == null) return;
 
+            CustomerData customer = gameManager.CurrentCustomer;
+
             if (cue == "stop") AudioManager.Instance.StopMusic();
-            else if (cue == "theme") AudioManager.Instance.PlayMusic(gameManager.CurrentCustomer.theme);
-            else Debug.LogWarning($"[Customer] Unknown music cue '{cue}'.");
+            else if (cue == "theme" && customer != null) AudioManager.Instance.PlayMusic(customer.theme);
+            else if (cue != "theme") Debug.LogWarning($"[Customer] Unknown music cue '{cue}'.");
         }
 
         private void PlayVoice()
         {
-            if (runner.IsSkipping || AudioManager.Instance == null) return;
+            CustomerData customer = gameManager.CurrentCustomer;
+            if (runner.IsSkipping || AudioManager.Instance == null || customer == null) return;
 
-            AudioManager.Instance.PlaySFX(gameManager.CurrentCustomer.voiceSfx);
+            AudioManager.Instance.PlaySFX(customer.voiceSfx);
         }
 
         private void Enter()
         {
             CustomerData customer = gameManager.CurrentCustomer;
-            if (visible && customer == current) return;
+            if (customer == null || (visible && customer == current)) return;
 
             CompleteSequence();
 

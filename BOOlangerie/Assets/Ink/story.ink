@@ -183,7 +183,7 @@ No need! We can smell that disgusting slop you call a baked good from here. #spe
 Tweedle dumb chimes in.
 Yes, slop you call a baked good! #speaker: Pumpkin Head . . . Man?
 Ok, now you're really- #speaker: Me
-What the- #speaker: Me #anim: fail #sfx: coin_jingle
+What the- #speaker: Me #anim: fail #sfx: coin_jingle #jar: gone
 S-Sorry! #speaker: Pumpkin Head . . . Man?
 One of the voices shouts out as they exit the shop, in a feeble attempt to restore the peace. #anim: exit
 H-Hey! Get back here! #speaker: Me

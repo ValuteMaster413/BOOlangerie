@@ -279,7 +279,7 @@ MonoBehaviour:
   visualConfigs:
   - {fileID: 11400000, guid: b302fc53a98968c41bdf0c1a867195dc, type: 2}
   - {fileID: 11400000, guid: 12638ed962d6e4646bac0a6787dc1061, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 166d8e0ef339d77429ec15aba4bbc6f5, type: 2}
   baseImage: {fileID: 2385586884245172171}
   fillingImage: {fileID: 7668362975286560015}
   toppingImage: {fileID: 3930065302936202903}

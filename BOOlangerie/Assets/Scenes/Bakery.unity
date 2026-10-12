@@ -392,6 +392,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &624240139 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4125321854453649110, guid: a198c203e0290dc4fa5009d9173e3a69, type: 3}
+  m_PrefabInstance: {fileID: 9013716530562033943}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!114 &1079923217 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7613105431519400638, guid: a198c203e0290dc4fa5009d9173e3a69, type: 3}
@@ -655,9 +666,10 @@ MonoBehaviour:
   sky: {fileID: 0}
   servedDish: {fileID: 78268128}
   blackoutDishTint: {r: 0.4, g: 0.4, b: 0.4, a: 1}
-  orderNote: {fileID: 0}
-  orderNoteName: {fileID: 0}
-  orderNoteText: {fileID: 0}
+  dishFadeSeconds: 0.5
+  recallButton: {fileID: 624240139}
+  hoverScale: 1.04
+  hoverHop: 14
   jarLayers: []
   jarGoneSprite: {fileID: 0}
   dawnAtEnding: 1

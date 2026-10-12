@@ -28,6 +28,8 @@ namespace BOO.UI
         [SerializeField] private Color blackoutDishTint = new Color(0.4f, 0.4f, 0.4f);
         [SerializeField] private float dishFadeSeconds = 0.5f;
         [SerializeField] private Button recallButton;
+        [SerializeField] private float hoverScale = 1.04f;
+        [SerializeField] private float hoverHop = 14f;
 
         [Header("Night effects")]
         [SerializeField] private Image[] jarLayers;
@@ -61,6 +63,8 @@ namespace BOO.UI
         private Coroutine monsterLoop;
         private Coroutine hop;
         private Coroutine dishFade;
+        private PointerHover recallHover;
+        private bool wasHovered;
         private Color dishTint = Color.white;
 
         private void Awake()
@@ -86,6 +90,8 @@ namespace BOO.UI
             if (recallButton != null)
             {
                 recallButton.onClick.AddListener(RecallOrder);
+                recallHover = recallButton.GetComponent<PointerHover>();
+                if (recallHover == null) recallHover = recallButton.gameObject.AddComponent<PointerHover>();
                 recallButton.gameObject.SetActive(false);
             }
         }
@@ -108,6 +114,26 @@ namespace BOO.UI
         {
             float shake = shivering ? Mathf.Sin(Time.time * shiverRate) * shiverPixels : 0f;
             body.rectTransform.anchoredPosition = bodyHome + new Vector2(shake, hopOffset);
+
+            UpdateHover();
+        }
+
+        private void UpdateHover()
+        {
+            bool hovered = recallHover != null && recallHover.IsHovered && visible
+                && gameManager.State == GameState.Prep && !runner.IsPlaying;
+
+            if (hovered && !wasHovered) StartHop(hoverHop);
+            wasHovered = hovered;
+
+            float scale = Mathf.MoveTowards(body.rectTransform.localScale.x, hovered ? hoverScale : 1f, Time.deltaTime * 0.4f);
+            body.rectTransform.localScale = new Vector3(scale, scale, 1f);
+        }
+
+        private void StartHop(float height)
+        {
+            if (hop != null) StopCoroutine(hop);
+            hop = StartCoroutine(Hop(height));
         }
 
         private void OnStateChanged(GameState state)
@@ -329,8 +355,7 @@ namespace BOO.UI
 
             CustomerData customer = current;
             shivering = false;
-            if (hop != null) StopCoroutine(hop);
-            hop = StartCoroutine(Hop());
+            StartHop(hopHeight);
 
             StartSequence(
                 PlayFrames(body, customer.successFrames, customer.framesPerSecond, false),
@@ -442,12 +467,12 @@ namespace BOO.UI
             while (loop);
         }
 
-        private IEnumerator Hop()
+        private IEnumerator Hop(float height)
         {
             const float duration = 0.35f;
             for (float t = 0f; t < duration; t += Time.deltaTime)
             {
-                hopOffset = Mathf.Sin(t / duration * Mathf.PI) * hopHeight;
+                hopOffset = Mathf.Sin(t / duration * Mathf.PI) * height;
                 yield return null;
             }
 

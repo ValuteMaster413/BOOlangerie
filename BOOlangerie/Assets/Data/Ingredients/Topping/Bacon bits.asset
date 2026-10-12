@@ -15,6 +15,6 @@ MonoBehaviour:
   id: bacon_bits
   displayName: Bacon bits
   icon: {fileID: 8557986366259380427, guid: 04436d3bae23fbf479eccc65e207f625, type: 3}
-  description: Smoky, salty and super addicting.
+  description: Smoky and salty and super addicting.
   kind: 2
   flavor: 6

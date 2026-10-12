@@ -13,6 +13,9 @@ public class DishVisualizer : MonoBehaviour
     [SerializeField] private Image fillingImage;
     [SerializeField] private Image toppingImage;
 
+    [Header("Placement")]
+    [SerializeField] private Vector2 dishPosition = new Vector2(-36f, 72f);
+
     public void DisplayDish(CurrentRecipe recipe)
     {
         if (recipe == null || recipe.selectedBase == null)
@@ -54,6 +57,14 @@ public class DishVisualizer : MonoBehaviour
         return ingredient != null ? ingredient.icon : null;
     }
 
+    private void PlaceOnCanvas(Image imgComponent, Sprite sprite)
+    {
+        Vector2 canvasCenter = new Vector2(sprite.texture.width, sprite.texture.height) * 0.5f;
+
+        imgComponent.rectTransform.sizeDelta = sprite.rect.size;
+        imgComponent.rectTransform.anchoredPosition = dishPosition + sprite.rect.center - canvasCenter;
+    }
+
     private void SetElementVisual(Image imgComponent, Sprite sprite, bool isVisible)
     {
         if (imgComponent == null) return;
@@ -61,7 +72,7 @@ public class DishVisualizer : MonoBehaviour
         if (isVisible && sprite != null)
         {
             imgComponent.sprite = sprite;
-            imgComponent.preserveAspect = true;
+            PlaceOnCanvas(imgComponent, sprite);
             imgComponent.gameObject.SetActive(true);
         }
         else

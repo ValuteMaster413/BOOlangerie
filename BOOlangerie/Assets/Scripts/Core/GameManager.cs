@@ -30,6 +30,8 @@ namespace BOO.Core
             }
         }
 
+        public Order LastServed { get; private set; }
+
         public event Action<GameState> StateChanged;
         public event Action<OrderResult> OrderServed;
 
@@ -43,7 +45,7 @@ namespace BOO.Core
             SetState(GameState.Intro);
         }
 
-        // TODO: remove once the prep station calls Serve
+#if UNITY_EDITOR
         private void Update()
         {
             if (State != GameState.Prep || Keyboard.current == null) return;
@@ -57,6 +59,7 @@ namespace BOO.Core
             OrderRound round = CurrentRound;
             return round != null && round.accepted.Length > 0 ? round.accepted[0] : null;
         }
+#endif
 
         public void DialogueFinished()
         {
@@ -83,6 +86,7 @@ namespace BOO.Core
 
             OrderResult result = OrderEvaluator.Evaluate(CurrentRound, made);
             Debug.Log($"Served {CurrentCustomer.id}: {result}");
+            LastServed = made;
             OrderServed?.Invoke(result);
             SetState(GameState.Reaction);
         }

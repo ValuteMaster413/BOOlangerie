@@ -158,13 +158,13 @@ Wow.
 I sigh and rub my temple. At least they apologized. Sort of.
 Alright then, that's more like it. #speaker: Me
 Now let's get you something to eat. #speaker: Me
-Ok, so first off, lots of cheese! #speaker: Pumpkin Head . . . Man?
-No cheese! You know how you get. #speaker: Pumpkin Head . . . Man?
-Fine. No cheese. #speaker: Pumpkin Head . . . Man?
+Ok, so first off, lots of cheese! #speaker: Pumpkin Head . . . Man? #note
+No cheese! You know how you get. #speaker: Pumpkin Head . . . Man? #note
+Fine. No cheese. #speaker: Pumpkin Head . . . Man? #note
 Something sweet! #speaker: Pumpkin Head . . . Man? #order
 No, something savory! #speaker: Pumpkin Head . . . Man? #order
-Sweet! #speaker: Pumpkin Head . . . Man?
-Savory! #speaker: Pumpkin Head . . . Man?
+Sweet! #speaker: Pumpkin Head . . . Man? #note
+Savory! #speaker: Pumpkin Head . . . Man? #note
 Um... I'd like a donut please. #speaker: Pumpkin Head . . . Man? #order
 Urghh my brain is breaking!
 I-I think I caught all that.
@@ -301,7 +301,7 @@ I beam as I grab my notepad and pen. Somehow, going home doesn't seem so importa
 So, what can I get you? #speaker: Me
 I crave something I can easily hold in my hand, filled with the sweetness of nature. #speaker: Cute Racoon-Dog! #order #voice
 Foraging along the trees in autumn, I like to pick these off the ground. #speaker: Cute Racoon-Dog! #order
-So hungry...Please hurry. #speaker: Cute Racoon-Dog!
+So hungry...Please hurry. #speaker: Cute Racoon-Dog! #note
 Ah, yes right away! #speaker: Me
 Gosh, that was a bit cryptic, but I'll do my very best!
 -> DONE

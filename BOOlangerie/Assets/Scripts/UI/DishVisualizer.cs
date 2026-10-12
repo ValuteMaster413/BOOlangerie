@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using BOO.Core;
 using BOO.Data;
 
 public class DishVisualizer : MonoBehaviour
@@ -18,31 +19,60 @@ public class DishVisualizer : MonoBehaviour
 
     public void DisplayDish(CurrentRecipe recipe)
     {
-        if (recipe == null || recipe.selectedBase == null)
+        if (recipe == null)
         {
             ClearVisuals();
             return;
         }
 
-        DishRecipeVisualData config = visualConfigs.Find(c => c != null && c.baseIngredient == recipe.selectedBase);
+        DisplayDish(recipe.selectedBase, recipe.selectedFilling, recipe.selectedTopping);
+    }
+
+    public void DisplayDish(Order order)
+    {
+        if (order == null)
+        {
+            ClearVisuals();
+            return;
+        }
+
+        DisplayDish(order.baseItem, order.filling, order.topping);
+    }
+
+    public void DisplayDish(IngredientData baseItem, IngredientData filling, IngredientData topping)
+    {
+        if (baseItem == null)
+        {
+            ClearVisuals();
+            return;
+        }
+
+        DishRecipeVisualData config = visualConfigs.Find(c => c != null && c.baseIngredient == baseItem);
 
         if (config == null)
         {
-            SetElementVisual(baseImage, IconOf(recipe.selectedBase), true);
-            SetElementVisual(fillingImage, IconOf(recipe.selectedFilling), true);
-            SetElementVisual(toppingImage, IconOf(recipe.selectedTopping), true);
+            SetElementVisual(baseImage, IconOf(baseItem), true);
+            SetElementVisual(fillingImage, IconOf(filling), true);
+            SetElementVisual(toppingImage, IconOf(topping), true);
             return;
         }
 
         SetElementVisual(baseImage, config.baseSprite, true);
 
-        Sprite fillingSprite = config.GetFillingSprite(recipe.selectedFilling);
-        if (fillingSprite == null) fillingSprite = IconOf(recipe.selectedFilling);
+        Sprite fillingSprite = config.GetFillingSprite(filling);
+        if (fillingSprite == null) fillingSprite = IconOf(filling);
         SetElementVisual(fillingImage, fillingSprite, true);
 
-        Sprite toppingSprite = config.GetToppingSprite(recipe.selectedTopping);
-        if (toppingSprite == null) toppingSprite = IconOf(recipe.selectedTopping);
+        Sprite toppingSprite = config.GetToppingSprite(topping);
+        if (toppingSprite == null) toppingSprite = IconOf(topping);
         SetElementVisual(toppingImage, toppingSprite, true);
+    }
+
+    public void SetTint(Color tint)
+    {
+        if (baseImage != null) baseImage.color = tint;
+        if (fillingImage != null) fillingImage.color = tint;
+        if (toppingImage != null) toppingImage.color = tint;
     }
 
     public void ClearVisuals()

@@ -23,6 +23,12 @@ namespace BOO.UI
         [SerializeField] private GameObject fairyLight;
         [SerializeField] private Image sky;
 
+        [Header("Service")]
+        [SerializeField] private DishVisualizer servedDish;
+        [SerializeField] private Color blackoutDishTint = new Color(0.4f, 0.4f, 0.4f);
+        [SerializeField] private float dishFadeSeconds = 0.5f;
+        [SerializeField] private Button recallButton;
+
         [Header("Night effects")]
         [SerializeField] private Image[] jarLayers;
         [SerializeField] private Sprite jarGoneSprite;
@@ -54,6 +60,8 @@ namespace BOO.UI
         private Action pendingFinish;
         private Coroutine monsterLoop;
         private Coroutine hop;
+        private Coroutine dishFade;
+        private Color dishTint = Color.white;
 
         private void Awake()
         {
@@ -72,6 +80,14 @@ namespace BOO.UI
             monster.enabled = false;
             SetActive(lightsBroken, false);
             SetLit(true);
+
+            ClearServedDish();
+
+            if (recallButton != null)
+            {
+                recallButton.onClick.AddListener(RecallOrder);
+                recallButton.gameObject.SetActive(false);
+            }
         }
 
         private void OnEnable()
@@ -96,6 +112,9 @@ namespace BOO.UI
 
         private void OnStateChanged(GameState state)
         {
+            if (recallButton != null) recallButton.gameObject.SetActive(state == GameState.Prep);
+            if (state == GameState.Ordering || state == GameState.Ending) ClearServedDish();
+
             if (state == GameState.Ordering)
             {
                 if (gameManager.CurrentCustomer == current) return;
@@ -119,6 +138,58 @@ namespace BOO.UI
         private void OnOrderServed(OrderResult result)
         {
             SetWarm(result == OrderResult.Good);
+
+            if (servedDish == null) return;
+
+            StopDishFade();
+            dishTint = blackout ? blackoutDishTint : Color.white;
+            servedDish.SetTint(dishTint);
+            servedDish.DisplayDish(gameManager.LastServed);
+        }
+
+        private void ClearServedDish()
+        {
+            StopDishFade();
+            if (servedDish != null) servedDish.ClearVisuals();
+        }
+
+        private void FadeOutServedDish()
+        {
+            if (servedDish == null) return;
+
+            StopDishFade();
+
+            if (runner.IsSkipping) servedDish.ClearVisuals();
+            else dishFade = StartCoroutine(FadeDish());
+        }
+
+        private void StopDishFade()
+        {
+            if (dishFade != null) StopCoroutine(dishFade);
+            dishFade = null;
+        }
+
+        private IEnumerator FadeDish()
+        {
+            Color tint = dishTint;
+
+            for (float t = 0f; t < dishFadeSeconds; t += Time.deltaTime)
+            {
+                tint.a = 1f - t / dishFadeSeconds;
+                servedDish.SetTint(tint);
+                yield return null;
+            }
+
+            dishFade = null;
+            servedDish.ClearVisuals();
+        }
+
+        private void RecallOrder()
+        {
+            if (gameManager.State != GameState.Prep || !runner.CanRecall) return;
+
+            PlayVoice();
+            runner.Recall();
         }
 
         private void SetWarm(bool value)
@@ -142,6 +213,9 @@ namespace BOO.UI
                     break;
                 case "jar":
                     TakeJar();
+                    break;
+                case "food":
+                    FadeOutServedDish();
                     break;
             }
         }

@@ -19,10 +19,15 @@ namespace BOO.Core
         private Story story;
         private string speaker = "";
         private OrderResult lastResult;
+        private bool lineIsNote;
+        private readonly List<string> noteLines = new List<string>();
+        private readonly List<string> noteSpeakers = new List<string>();
+        private int recallIndex = -1;
 
         public bool IsPlaying { get; private set; }
         public bool HasChoices => story != null && story.currentChoices.Count > 0;
         public bool IsSkipping { get; private set; }
+        public bool CanRecall => !IsPlaying && noteLines.Count > 0;
 
         public event Action<string, string> LineShown;
         public event Action ChoicesShown;
@@ -96,7 +101,19 @@ namespace BOO.Core
             }
 
             IsPlaying = true;
+            noteLines.Clear();
+            noteSpeakers.Clear();
+            recallIndex = -1;
             story.ChoosePathString(knot);
+            Advance();
+        }
+
+        public void Recall()
+        {
+            if (!CanRecall) return;
+
+            IsPlaying = true;
+            recallIndex = 0;
             Advance();
         }
 
@@ -104,12 +121,19 @@ namespace BOO.Core
         {
             if (!IsPlaying) return;
 
+            if (recallIndex >= 0)
+            {
+                AdvanceRecall();
+                return;
+            }
+
             while (story.canContinue)
             {
                 string text = story.Continue().Trim();
                 speaker = ""; // narrator
                 ReadTags();
                 if (text.Length == 0) continue;
+                if (lineIsNote) AddNote(text);
 
                 Debug.Log($"[Dialogue] {speaker}: {text}");
                 LineShown?.Invoke(speaker, text);
@@ -120,9 +144,35 @@ namespace BOO.Core
             else Finish();
         }
 
+        private void AdvanceRecall()
+        {
+            if (recallIndex >= noteLines.Count)
+            {
+                recallIndex = -1;
+                Finish();
+                return;
+            }
+
+            int index = recallIndex++;
+            LineShown?.Invoke(noteSpeakers[index], noteLines[index]);
+        }
+
+        private void AddNote(string text)
+        {
+            noteLines.Add(text);
+            noteSpeakers.Add(speaker);
+        }
+
         public void Skip()
         {
             if (!IsPlaying || HasChoices) return;
+
+            if (recallIndex >= 0)
+            {
+                recallIndex = -1;
+                Finish();
+                return;
+            }
 
             string lastSpeaker = "";
             string lastText = null;
@@ -135,6 +185,7 @@ namespace BOO.Core
                 speaker = ""; // narrator
                 bool isOrder = ReadTags();
                 if (text.Length == 0) continue;
+                if (lineIsNote) AddNote(text);
 
                 lastSpeaker = speaker;
                 lastText = text;
@@ -177,6 +228,7 @@ namespace BOO.Core
         private bool ReadTags()
         {
             bool isOrder = false;
+            lineIsNote = false;
             List<string> tags = story.currentTags;
             if (tags == null) return false;
 
@@ -199,6 +251,7 @@ namespace BOO.Core
                 }
 
                 if (key == "order") isOrder = true;
+                if (key == "order" || key == "note") lineIsNote = true;
 
                 Debug.Log($"[Dialogue] tag {key} = {value}");
                 TagFired?.Invoke(key, value);

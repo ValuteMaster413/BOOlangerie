@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: ef16d25be80e59f4fb82e5cd6c5e556c
+guid: fbd697170a61f9844a2bdaf72629ef81
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3181793752519930688
-    second: Sweet Potato Base_0
+      213: 1811307759550437497
+    second: Potato Filling_0
+  - first:
+      213: 1194472105678699279
+    second: Potato Filling_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,17 +112,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sweet Potato Base_0
+      name: Potato Filling_0
       rect:
         serializedVersion: 2
-        x: 120
-        y: 85
-        width: 666
-        height: 369
+        x: 11
+        y: 148
+        width: 430
+        height: 387
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +144,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 043f18f5f80082c20800000000000000
-      internalID: 3181793752519930688
+      spriteID: 97899e28fce032910800000000000000
+      internalID: 1811307759550437497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Potato Filling_1
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 204
+        width: 101
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0b77113d0e939010800000000000000
+      internalID: 1194472105678699279
       vertices: []
       indices: 
       edges: []
@@ -148,7 +186,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Sweet Potato Base_0: 3181793752519930688
+      Potato Filling_0: 1811307759550437497
+      Potato Filling_1: 1194472105678699279
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

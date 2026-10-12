@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BOO.Data.IngredientData
   id: slice_of_brioche
   displayName: Slice of brioche
-  icon: {fileID: 0}
+  icon: {fileID: -7991744502723070528, guid: 3cfc3e21f0b0a664c80e1b10a931039a, type: 3}
   description: Full of butter, sugar and eggs, this silky french bread is often called
     a pastry.
   kind: 0

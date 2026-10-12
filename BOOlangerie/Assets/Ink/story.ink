@@ -10,7 +10,7 @@ Everything just screams <i>'autumn is here.'</i>
 I yawn, blinking the sleep away from my eyes.
 One sleep-deprived baker, <i>also</i> ready to go. #speaker: Me
 This is definitely the longest I've ever stayed here, <i>especially</i> alone.
-I hadn't even realized how quickly it got dark or how abandoned the streets are.
+I hadn't even realized how quickly it got dark or how abandoned the streets suddenly were.
 Thinking to myself, I recount how many late nights I've spent carrying shipments in.
 That was...let's see... the <i>fourth</i> time this week I've had to restock! #speaker: Me
 I swear, sometimes it feels like I'm losing ingredients faster than I bake. #speaker: Me

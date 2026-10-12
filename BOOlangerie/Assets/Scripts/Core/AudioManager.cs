@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
 
 namespace BOO.Core
@@ -23,9 +24,16 @@ namespace BOO.Core
         [Header("Sounds Played By Name")]
         [SerializeField] private AudioClip[] sfxLibrary;
 
+        [Header("Gapless Music (Web)")]
+        [SerializeField] private TextAsset[] musicLoops;
+        [SerializeField] private bool useLoopsInEditor;
+
         private const string MUSIC_KEY = "MusicVolume";
         private const string SFX_KEY = "SFXVolume";
 
+        private const int LoopHeaderBytes = 8;
+
+        private readonly Dictionary<AudioClip, AudioClip> loopClips = new Dictionary<AudioClip, AudioClip>();
         private AudioSource voiceSource;
         private AudioClip currentMusic;
         private float musicFade = 1f;
@@ -176,7 +184,7 @@ namespace BOO.Core
 
             musicFade = 0f;
             ApplyMusicVolume();
-            musicSource.clip = next;
+            musicSource.clip = LoopClipFor(next);
 
             if (next == null)
             {
@@ -189,6 +197,52 @@ namespace BOO.Core
             }
 
             musicSwap = null;
+        }
+
+        private AudioClip LoopClipFor(AudioClip clip)
+        {
+            if (clip == null || musicLoops == null) return clip;
+            if (Application.platform != RuntimePlatform.WebGLPlayer && !useLoopsInEditor) return clip;
+
+            if (loopClips.TryGetValue(clip, out AudioClip ready)) return ready;
+
+            AudioClip built = clip;
+            foreach (TextAsset loop in musicLoops)
+            {
+                if (loop == null || !string.Equals(loop.name, clip.name, StringComparison.OrdinalIgnoreCase)) continue;
+
+                built = BuildLoopClip(loop);
+                break;
+            }
+
+            loopClips[clip] = built;
+            return built;
+        }
+
+        private static AudioClip BuildLoopClip(TextAsset loop)
+        {
+            NativeArray<byte> bytes = loop.GetData<byte>();
+
+            int frequency = ReadInt(bytes, 0);
+            int channels = ReadInt(bytes, 4);
+            int sampleCount = (bytes.Length - LoopHeaderBytes) / 2;
+
+            float[] samples = new float[sampleCount];
+            for (int i = 0; i < sampleCount; i++)
+            {
+                int offset = LoopHeaderBytes + i * 2;
+                short value = (short)(bytes[offset] | (bytes[offset + 1] << 8));
+                samples[i] = value / 32768f;
+            }
+
+            AudioClip clip = AudioClip.Create(loop.name, sampleCount / channels, channels, frequency, false);
+            clip.SetData(samples, 0);
+            return clip;
+        }
+
+        private static int ReadInt(NativeArray<byte> bytes, int offset)
+        {
+            return bytes[offset] | (bytes[offset + 1] << 8) | (bytes[offset + 2] << 16) | (bytes[offset + 3] << 24);
         }
 
         private IEnumerator FadeMusic(float target)

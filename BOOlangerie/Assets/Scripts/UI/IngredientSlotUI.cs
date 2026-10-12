@@ -12,6 +12,8 @@ public class IngredientSlotUI : MonoBehaviour
 
     private IngredientData assignedIngredient;
     private Action<IngredientData> onClickCallback;
+    private Sprite emptyIcon;
+    private bool hasEmptyIcon;
 
     public IngredientData Ingredient => assignedIngredient;
 
@@ -24,8 +26,14 @@ public class IngredientSlotUI : MonoBehaviour
 
         if (iconImage != null)
         {
-            iconImage.sprite = ingredient.icon;
-            iconImage.enabled = ingredient.icon != null;
+            if (!hasEmptyIcon)
+            {
+                emptyIcon = iconImage.sprite;
+                hasEmptyIcon = true;
+            }
+
+            iconImage.sprite = ingredient.icon != null ? ingredient.icon : emptyIcon;
+            iconImage.enabled = iconImage.sprite != null;
             iconImage.preserveAspect = true;
         }
 
@@ -36,8 +44,9 @@ public class IngredientSlotUI : MonoBehaviour
         }
     }
 
-    public void SetColor(Color color)
+    public void SetLook(Color barColor, Color nameColor)
     {
-        if (slotButton != null && slotButton.image != null) slotButton.image.color = color;
+        if (slotButton != null && slotButton.image != null) slotButton.image.color = barColor;
+        if (nameText != null) nameText.color = nameColor;
     }
 }

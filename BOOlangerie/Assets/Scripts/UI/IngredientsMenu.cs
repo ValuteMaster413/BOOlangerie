@@ -28,12 +28,24 @@ public class IngredientsMenuUI : MonoBehaviour
     [Header("Description Panel")]
     [SerializeField] private TextMeshProUGUI descriptionText;
 
-    [Header("Colors")]
-    [SerializeField] private Color normalColor = new Color(0.953f, 0.894f, 0.78f);
-    [SerializeField] private Color selectedColor = new Color(0.961f, 0.722f, 0.255f);
+    [Header("Open / Closed List")]
+    [SerializeField] private GameObject expandedPanel;
+    [SerializeField] private GameObject collapsedPanel;
+    [SerializeField] private Button collapseButton;
+    [SerializeField] private Button expandButton;
+    [SerializeField] private Image[] pickedIcons;
+
+    [Header("Looks")]
+    [SerializeField] private Color barColor = Color.white;
+    [SerializeField] private Color selectedBarColor = new Color(0.69f, 0.69f, 0.69f);
+    [SerializeField] private Color nameColor = Color.black;
+    [SerializeField] private Color selectedNameColor = Color.white;
+    [SerializeField] private Color inactiveTabColor = new Color(0.78f, 0.73f, 0.67f);
 
     private IngredientKind currentCategory = IngredientKind.Base;
     private CurrentRecipe currentRecipe = new CurrentRecipe();
+    private Sprite[] emptyPickSprites;
+    private bool tabsFrozen;
 
     private void Awake()
     {
@@ -43,12 +55,29 @@ public class IngredientsMenuUI : MonoBehaviour
 
         if (resetButton != null) resetButton.onClick.AddListener(ResetRecipe);
         if (serveButton != null) serveButton.onClick.AddListener(ServeDish);
+
+        if (collapseButton != null) collapseButton.onClick.AddListener(() => OnListToggled(true));
+        if (expandButton != null) expandButton.onClick.AddListener(() => OnListToggled(false));
+
+        int pickCount = pickedIcons != null ? pickedIcons.Length : 0;
+        emptyPickSprites = new Sprite[pickCount];
+        for (int i = 0; i < pickCount; i++)
+        {
+            if (pickedIcons[i] != null) emptyPickSprites[i] = pickedIcons[i].sprite;
+        }
     }
 
     private void OnEnable()
     {
+        SetCollapsed(false);
         SwitchCategory(IngredientKind.Base);
         RefreshDish();
+    }
+
+    private void Start()
+    {
+        FreezeTabLayout();
+        RefreshTabs();
     }
 
     private void OnDestroy()
@@ -59,12 +88,32 @@ public class IngredientsMenuUI : MonoBehaviour
 
         if (resetButton != null) resetButton.onClick.RemoveListener(ResetRecipe);
         if (serveButton != null) serveButton.onClick.RemoveListener(ServeDish);
+
+        if (collapseButton != null) collapseButton.onClick.RemoveAllListeners();
+        if (expandButton != null) expandButton.onClick.RemoveAllListeners();
     }
 
     private void OnTabClicked(IngredientKind category)
     {
-        if (AudioManager.Instance != null) AudioManager.Instance.PlaySFX("ingredient_list");
+        PlayListSfx();
         SwitchCategory(category);
+    }
+
+    private void OnListToggled(bool collapsed)
+    {
+        PlayListSfx();
+        SetCollapsed(collapsed);
+    }
+
+    private void PlayListSfx()
+    {
+        if (AudioManager.Instance != null) AudioManager.Instance.PlaySFX("ingredient_list");
+    }
+
+    private void SetCollapsed(bool collapsed)
+    {
+        if (expandedPanel != null) expandedPanel.SetActive(!collapsed);
+        if (collapsedPanel != null) collapsedPanel.SetActive(collapsed);
     }
 
     public void SwitchCategory(IngredientKind category)
@@ -130,6 +179,16 @@ public class IngredientsMenuUI : MonoBehaviour
         }
     }
 
+    private Button TabFor(IngredientKind category)
+    {
+        switch (category)
+        {
+            case IngredientKind.Base: return baseTabButton;
+            case IngredientKind.Filling: return fillingTabButton;
+            default: return toppingTabButton;
+        }
+    }
+
     private void RefreshSlots()
     {
         IngredientData selected = SelectedIn(currentCategory);
@@ -137,7 +196,7 @@ public class IngredientsMenuUI : MonoBehaviour
         foreach (IngredientSlotUI slot in ingredientSlots)
         {
             bool isSelected = selected != null && slot.Ingredient == selected;
-            slot.SetColor(isSelected ? selectedColor : normalColor);
+            slot.SetLook(isSelected ? selectedBarColor : barColor, isSelected ? selectedNameColor : nameColor);
         }
     }
 
@@ -146,32 +205,80 @@ public class IngredientsMenuUI : MonoBehaviour
         SetTabColor(baseTabButton, IngredientKind.Base);
         SetTabColor(fillingTabButton, IngredientKind.Filling);
         SetTabColor(toppingTabButton, IngredientKind.Topping);
+
+        if (!tabsFrozen) return;
+
+        BringToFront(toppingTabButton);
+        BringToFront(fillingTabButton);
+        BringToFront(baseTabButton);
+        BringToFront(TabFor(currentCategory));
     }
 
     private void SetTabColor(Button tab, IngredientKind category)
     {
         if (tab == null || tab.image == null) return;
 
-        tab.image.color = category == currentCategory ? selectedColor : normalColor;
+        tab.image.color = category == currentCategory ? Color.white : inactiveTabColor;
+    }
+
+    private void BringToFront(Button tab)
+    {
+        if (tab != null) tab.transform.SetAsLastSibling();
+    }
+
+    private void FreezeTabLayout()
+    {
+        tabsFrozen = true;
+        if (baseTabButton == null) return;
+
+        LayoutGroup layout = baseTabButton.transform.parent.GetComponent<LayoutGroup>();
+        if (layout == null) return;
+
+        LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)layout.transform);
+
+        Button[] tabs = { baseTabButton, fillingTabButton, toppingTabButton };
+        Vector3[] positions = new Vector3[tabs.Length];
+        for (int i = 0; i < tabs.Length; i++)
+        {
+            if (tabs[i] != null) positions[i] = tabs[i].transform.position;
+        }
+
+        layout.enabled = false;
+
+        for (int i = 0; i < tabs.Length; i++)
+        {
+            if (tabs[i] != null) tabs[i].transform.position = positions[i];
+        }
     }
 
     private void RefreshDish()
     {
         if (dishVisualizer != null) dishVisualizer.DisplayDish(currentRecipe);
         if (serveButton != null) serveButton.interactable = currentRecipe.IsValid();
+
+        SetPickedIcon(0, currentRecipe.selectedBase);
+        SetPickedIcon(1, currentRecipe.selectedFilling);
+        SetPickedIcon(2, currentRecipe.selectedTopping);
+    }
+
+    private void SetPickedIcon(int index, IngredientData ingredient)
+    {
+        if (pickedIcons == null || index >= pickedIcons.Length || pickedIcons[index] == null) return;
+
+        Sprite icon = ingredient != null && ingredient.icon != null ? ingredient.icon : emptyPickSprites[index];
+
+        pickedIcons[index].sprite = icon;
+        pickedIcons[index].enabled = icon != null;
+        pickedIcons[index].preserveAspect = true;
     }
 
     private void ShowDescription(IngredientData ingredient)
     {
         if (descriptionText == null) return;
 
-        if (ingredient == null)
-        {
-            descriptionText.text = $"Pick a {currentCategory.ToString().ToLowerInvariant()}...";
-            return;
-        }
-
-        descriptionText.text = $"<size=130%>{ingredient.displayName}</size>\n{ingredient.description}";
+        descriptionText.text = ingredient != null
+            ? ingredient.description
+            : $"Pick a {currentCategory.ToString().ToLowerInvariant()}...";
     }
 
     private void ResetRecipe()

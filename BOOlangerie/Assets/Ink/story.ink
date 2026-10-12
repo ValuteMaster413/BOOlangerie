@@ -92,7 +92,7 @@ I'm so sorry! I'll remake it right away! #speaker: Me
 Ah, but you see, I'm feeling rather <i>frigid</i> today. #speaker: Posh Moth Lady
 N-No please don't hurt- #speaker: Me
 <i>Light is a privilege darling!~</i> #speaker: Posh Moth Lady #anim: fail #sfx: lights_break #voice
-Hey! You know I just bought those! #speaker: Me
+Just because I've got more at home, doesn't mean you can break them all! #speaker: Me
 Ah! This sucks sooo much! #speaker: Me #anim: exit
 -> DONE
 
@@ -249,7 +249,7 @@ Ah yes. <i>Very convincing</i> indeed. #speaker: Me
     I mean it's fine I guess, being a pumpkin and all, but don't you guys ever want to be yourselves? #speaker: Me
     The first mouse squeaks confusedly.
     <i>O-Ourselves?</i> #speaker: Pumpkin Head . . . Mice?
-    Yeah! Like, just you! The three mice! You can be like... <i>the best mice ever!</i> #speaker: Me
+    Yeah! The three mice! You can be like... <i>the best mice ever!</i> #speaker: Me
     The mice ponder this revelation for a moment.
     You know what you're right! #speaker: Pumpkin Head . . . Mice?
     I am? Honestly, that was a pretty sucky pep talk.
@@ -339,7 +339,7 @@ Heh, seems like trick or treating came a day early this year. #speaker: Me #anim
 
 === game_end ===
 Whew what a night!
-If I wasn't so stressed I would think I just dreamed all this up...
+If I wasn't so stressed, I'd swear this was all a dream...
 I guess it's true what Grandma used to say about nights in this town. I always thought they were nothing but tall tales.
 After all that's happened tonight, I can honestly say that I...
 * [Hated it!]

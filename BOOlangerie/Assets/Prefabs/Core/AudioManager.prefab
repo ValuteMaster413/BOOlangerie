@@ -206,12 +206,14 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 51eff4210b0472649b2aeb3045dc9938, type: 3}
   - {fileID: 8300000, guid: ae23a7c84ef07a04a974a22f52792c76, type: 3}
   - {fileID: 8300000, guid: 101ef2c3f73a0e541858af2229249a24, type: 3}
+  - {fileID: 8300000, guid: daa578a993dd10b46bfac12228127c01, type: 3}
+  - {fileID: 8300000, guid: c44a4b359d20e1544bff27a98417c798, type: 3}
   musicLoops:
   - {fileID: 4900000, guid: 0161bf374834dd648ad9b8fec76fe89c, type: 3}
   - {fileID: 4900000, guid: d389637391ec5034a9bd3f8da85c4352, type: 3}
   - {fileID: 4900000, guid: 7b4246740e7286b4a915f3c624fdc2e8, type: 3}
   - {fileID: 4900000, guid: cb86c5089b2e91f4a8740c7d87592dd7, type: 3}
-  useLoopsInEditor: 0
+  useLoopsInEditor: 1
 --- !u!1 &8711976008340352177
 GameObject:
   m_ObjectHideFlags: 0

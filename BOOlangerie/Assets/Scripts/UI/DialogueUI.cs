@@ -21,7 +21,6 @@ namespace BOO.UI
         [SerializeField] private GameObject choiceOverlay;
         [SerializeField] private Transform choiceContainer;
         [SerializeField] private Button choiceButtonPrefab;
-        [SerializeField] private AudioClip advanceSfx;
 
         [Header("Typewriter")]
         [SerializeField] private float slowest = 20f;
@@ -212,7 +211,7 @@ namespace BOO.UI
 
         private void PlayAdvanceSfx()
         {
-            if (AudioManager.Instance != null) AudioManager.Instance.PlaySFX(advanceSfx);
+            if (AudioManager.Instance != null) AudioManager.Instance.PlayRandomSFX("dialogue_confirm");
         }
 
         private void ClearChoices()

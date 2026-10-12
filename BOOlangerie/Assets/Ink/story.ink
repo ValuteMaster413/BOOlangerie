@@ -136,7 +136,7 @@ Err... None of your business! You are just a <i>lowly</i> humany waiter. Now ser
 The other voice chimes in agreement.
 Post-haste! #speaker: Pumpkin Head . . . Man? #voice: voice_mouse_2
 The last voice, <i>who's beginning to be my favorite,</i> softly speaks.
-O-Or just as soon as you can. #speaker: Pumpkin Head . . . Man? #voice: voice_mouse_3
+O-Or as soon as you can. #speaker: Pumpkin Head . . . Man? #voice: voice_mouse_3
 My eye begins to twitch. It's been a long night and I've had just about enough of their attitude.
 Straightening my back, I clear my throat.
 Listen here! First of all, I'm not a waiter, I'm this bakery's <i>boss.</i> #speaker: Me
@@ -295,7 +295,7 @@ Can I get you something to eat? O-On the house of course! #speaker: Me
 The creature falls silent, looking a bit perplexed.
 On the house? #speaker: Cute Racoon-Dog!
 Yes! That means you don't have to pay! #speaker: Me
-It wouldn't hurt to feed just one more little critter, I mean... just look at them!
+It wouldn't hurt to feed one more little critter...right?
 Ok. On the house. #speaker: Cute Racoon-Dog!
 I beam as I grab my notepad and pen. Somehow, going home doesn't seem so important now.
 So, what can I get you? #speaker: Me
@@ -344,7 +344,7 @@ I guess it's true what Grandma used to say about nights in this town. I always t
 After all that's happened tonight, I can honestly say that I...
 * [Hated it!]
     Never want to stay open this late again!
-    Just normal waking hours, with normal human people, who have the decency to not mess up my entire sense of life.
+    I want normal waking hours, with normal human people who have the decency to not mess up my entire sense of life.
     I'm going home, jumping into bed, and forgetting any of this ever happened! #speaker: Me
 * [Loved it!]
     Actually, really enjoyed it!

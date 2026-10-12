@@ -1,5 +1,6 @@
 using System;
 using BOO.Data;
+using BOO.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -75,7 +76,7 @@ namespace BOO.Core
                     NextRound();
                     break;
                 case GameState.Ending:
-                    LoadMenu();
+                    ShowThanks();
                     break;
             }
         }
@@ -107,6 +108,14 @@ namespace BOO.Core
             }
 
             SetState(GameState.Ordering);
+        }
+
+        private void ShowThanks()
+        {
+            ThanksUI thanks = FindAnyObjectByType<ThanksUI>(FindObjectsInactive.Include);
+
+            if (thanks != null) thanks.Play(LoadMenu);
+            else LoadMenu();
         }
 
         private void LoadMenu()

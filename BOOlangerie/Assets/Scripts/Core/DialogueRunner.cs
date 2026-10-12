@@ -20,8 +20,10 @@ namespace BOO.Core
         private string speaker = "";
         private OrderResult lastResult;
         private bool lineIsNote;
+        private string lineVoice;
         private readonly List<string> noteLines = new List<string>();
         private readonly List<string> noteSpeakers = new List<string>();
+        private readonly List<string> noteVoices = new List<string>();
         private int recallIndex = -1;
 
         public bool IsPlaying { get; private set; }
@@ -103,6 +105,7 @@ namespace BOO.Core
             IsPlaying = true;
             noteLines.Clear();
             noteSpeakers.Clear();
+            noteVoices.Clear();
             recallIndex = -1;
             story.ChoosePathString(knot);
             Advance();
@@ -114,6 +117,7 @@ namespace BOO.Core
 
             IsPlaying = true;
             recallIndex = 0;
+            if (noteVoices[0] == null) TagFired?.Invoke("voice", "");
             Advance();
         }
 
@@ -154,6 +158,7 @@ namespace BOO.Core
             }
 
             int index = recallIndex++;
+            if (noteVoices[index] != null) TagFired?.Invoke("voice", noteVoices[index]);
             LineShown?.Invoke(noteSpeakers[index], noteLines[index]);
         }
 
@@ -161,6 +166,7 @@ namespace BOO.Core
         {
             noteLines.Add(text);
             noteSpeakers.Add(speaker);
+            noteVoices.Add(lineVoice);
         }
 
         public void Skip()
@@ -229,6 +235,7 @@ namespace BOO.Core
         {
             bool isOrder = false;
             lineIsNote = false;
+            lineVoice = null;
             List<string> tags = story.currentTags;
             if (tags == null) return false;
 
@@ -252,6 +259,7 @@ namespace BOO.Core
 
                 if (key == "order") isOrder = true;
                 if (key == "order" || key == "note") lineIsNote = true;
+                if (key == "voice") lineVoice = value;
 
                 Debug.Log($"[Dialogue] tag {key} = {value}");
                 TagFired?.Invoke(key, value);

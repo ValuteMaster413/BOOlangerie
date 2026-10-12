@@ -26,6 +26,7 @@ namespace BOO.Core
         private const string MUSIC_KEY = "MusicVolume";
         private const string SFX_KEY = "SFXVolume";
 
+        private AudioSource voiceSource;
         private AudioClip currentMusic;
         private float musicFade = 1f;
         private Coroutine musicSwap;
@@ -43,6 +44,10 @@ namespace BOO.Core
 
             Instance = this;
             DontDestroyOnLoad(gameObject);
+
+            voiceSource = gameObject.AddComponent<AudioSource>();
+            voiceSource.playOnAwake = false;
+            if (sfxSource != null) voiceSource.outputAudioMixerGroup = sfxSource.outputAudioMixerGroup;
 
             LoadVolumeSettings();
         }
@@ -98,18 +103,35 @@ namespace BOO.Core
 
         public void PlaySFX(string clipName)
         {
-            if (sfxLibrary == null) return;
+            PlaySFX(FindClip(clipName));
+        }
 
-            foreach (AudioClip clip in sfxLibrary)
+        public void PlayVoice(AudioClip clip)
+        {
+            if (voiceSource == null || clip == null) return;
+
+            voiceSource.Stop();
+            voiceSource.clip = clip;
+            voiceSource.Play();
+        }
+
+        public void PlayVoice(string clipName)
+        {
+            PlayVoice(FindClip(clipName));
+        }
+
+        private AudioClip FindClip(string clipName)
+        {
+            if (sfxLibrary != null)
             {
-                if (clip != null && string.Equals(clip.name, clipName, StringComparison.OrdinalIgnoreCase))
+                foreach (AudioClip clip in sfxLibrary)
                 {
-                    PlaySFX(clip);
-                    return;
+                    if (clip != null && string.Equals(clip.name, clipName, StringComparison.OrdinalIgnoreCase)) return clip;
                 }
             }
 
             Debug.LogWarning($"[Audio] No sound named '{clipName}' in the Sfx Library.");
+            return null;
         }
 
         public void PlayRandomSFX(string namePrefix)
@@ -193,6 +215,9 @@ namespace BOO.Core
         {
             if (sfxSource != null)
                 sfxSource.volume = SFXVolume;
+
+            if (voiceSource != null)
+                voiceSource.volume = SFXVolume;
         }
     }
 }

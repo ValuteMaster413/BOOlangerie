@@ -38,7 +38,7 @@ MonoBehaviour:
   flickerOnEnter: 0
   lightsOutOnFail: 0
   theme: {fileID: 8300000, guid: 74ac126383a39d542895466a0b99c73b, type: 3}
-  voiceSfx: {fileID: 8300000, guid: e3225c76e05d8234e999a612aab89943, type: 3}
+  voiceSfx: {fileID: 0}
   rounds:
   - accepted:
     - baseItem: {fileID: 11400000, guid: e08d692b072393a42ad1555235e0bbe8, type: 2}

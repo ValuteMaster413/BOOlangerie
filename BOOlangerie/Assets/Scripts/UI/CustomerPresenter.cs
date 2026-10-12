@@ -214,7 +214,6 @@ namespace BOO.UI
         {
             if (gameManager.State != GameState.Prep || !runner.CanRecall) return;
 
-            PlayVoice();
             runner.Recall();
         }
 
@@ -229,7 +228,7 @@ namespace BOO.UI
             switch (key)
             {
                 case "voice":
-                    PlayVoice();
+                    PlayVoice(value);
                     break;
                 case "music":
                     PlayMusicCue(value.ToLowerInvariant());
@@ -310,12 +309,18 @@ namespace BOO.UI
             else if (cue != "theme") Debug.LogWarning($"[Customer] Unknown music cue '{cue}'.");
         }
 
-        private void PlayVoice()
+        private void PlayVoice(string clipName)
         {
-            CustomerData customer = gameManager.CurrentCustomer;
-            if (runner.IsSkipping || AudioManager.Instance == null || customer == null) return;
+            if (runner.IsSkipping || AudioManager.Instance == null) return;
 
-            AudioManager.Instance.PlaySFX(customer.voiceSfx);
+            if (clipName.Length > 0)
+            {
+                AudioManager.Instance.PlayVoice(clipName);
+                return;
+            }
+
+            CustomerData customer = gameManager.CurrentCustomer;
+            if (customer != null) AudioManager.Instance.PlayVoice(customer.voiceSfx);
         }
 
         private void Enter()
